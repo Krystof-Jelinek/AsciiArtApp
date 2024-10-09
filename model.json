@@ -1,0 +1,1011 @@
+{
+  "entities": [
+    {
+      "name": "Abstractfilter",
+      "parent": null,
+      "attr": [
+        {
+          "name": "applyfilter(image)",
+          "primary": false,
+          "unique": false,
+          "nullable": false,
+          "type": null
+        }
+      ],
+      "transform": {
+        "x": 1062,
+        "y": 371.609375,
+        "width": 104,
+        "height": 100
+      }
+    },
+    {
+      "name": "Default",
+      "parent": null,
+      "attr": [],
+      "transform": {
+        "x": 645,
+        "y": 448.609375,
+        "width": 93,
+        "height": 91
+      }
+    },
+    {
+      "name": "Fileimagesaver",
+      "parent": null,
+      "attr": [],
+      "transform": {
+        "x": 871,
+        "y": 117.609375,
+        "width": 100,
+        "height": 83
+      }
+    },
+    {
+      "name": "Filteraplyer",
+      "parent": null,
+      "attr": [
+        {
+          "name": "field of abstractfilters",
+          "primary": false,
+          "unique": false,
+          "nullable": false,
+          "type": null
+        },
+        {
+          "name": "applyfilters(image) --> image",
+          "primary": false,
+          "unique": false,
+          "nullable": false,
+          "type": null
+        }
+      ],
+      "transform": {
+        "x": 695,
+        "y": 264.609375,
+        "width": 172,
+        "height": 137
+      }
+    },
+    {
+      "name": "Flip",
+      "parent": null,
+      "attr": [],
+      "transform": {
+        "x": 1215,
+        "y": 531.609375,
+        "width": 67,
+        "height": 90
+      }
+    },
+    {
+      "name": "Image",
+      "parent": null,
+      "attr": [
+        {
+          "name": "pixels",
+          "primary": false,
+          "unique": false,
+          "nullable": false,
+          "type": null
+        },
+        {
+          "name": "getpixel()",
+          "primary": false,
+          "unique": false,
+          "nullable": false,
+          "type": null
+        }
+      ],
+      "transform": {
+        "x": 37,
+        "y": 33.609375,
+        "width": 160,
+        "height": 124
+      }
+    },
+    {
+      "name": "Imageloaderinterface",
+      "parent": null,
+      "attr": [
+        {
+          "name": "loadimage(src) --> image",
+          "primary": false,
+          "unique": false,
+          "nullable": false,
+          "type": null
+        }
+      ],
+      "transform": {
+        "x": 37,
+        "y": 281.609375,
+        "width": 157,
+        "height": 123
+      }
+    },
+    {
+      "name": "Imagesaverinterface",
+      "parent": null,
+      "attr": [
+        {
+          "name": "save()",
+          "primary": false,
+          "unique": false,
+          "nullable": false,
+          "type": null
+        }
+      ],
+      "transform": {
+        "x": 655,
+        "y": 29.609375,
+        "width": 112,
+        "height": 101
+      }
+    },
+    {
+      "name": "Imagetoasciiconverterinterface",
+      "parent": null,
+      "attr": [
+        {
+          "name": "convert(image) --> string",
+          "primary": false,
+          "unique": false,
+          "nullable": false,
+          "type": null
+        }
+      ],
+      "transform": {
+        "x": 409,
+        "y": 268.609375,
+        "width": 163.203125,
+        "height": 136
+      }
+    },
+    {
+      "name": "Jpgloader",
+      "parent": null,
+      "attr": [],
+      "transform": {
+        "x": 76,
+        "y": 542.609375,
+        "width": 121,
+        "height": 55
+      }
+    },
+    {
+      "name": "Linearuserinputed",
+      "parent": null,
+      "attr": [],
+      "transform": {
+        "x": 367,
+        "y": 450.609375,
+        "width": 100.078125,
+        "height": 90
+      }
+    },
+    {
+      "name": "Nonlinear",
+      "parent": null,
+      "attr": [],
+      "transform": {
+        "x": 507,
+        "y": 448.609375,
+        "width": 95,
+        "height": 89
+      }
+    },
+    {
+      "name": "Pngloader",
+      "parent": null,
+      "attr": [],
+      "transform": {
+        "x": 157,
+        "y": 440.609375,
+        "width": 132,
+        "height": 73
+      }
+    },
+    {
+      "name": "Printimagesaver",
+      "parent": null,
+      "attr": [],
+      "transform": {
+        "x": 875,
+        "y": 18.609375,
+        "width": 91.5360107421875,
+        "height": 67
+      }
+    },
+    {
+      "name": "Randomloader",
+      "parent": null,
+      "attr": [],
+      "transform": {
+        "x": 7,
+        "y": 444.609375,
+        "width": 134,
+        "height": 76
+      }
+    },
+    {
+      "name": "Rotate",
+      "parent": null,
+      "attr": [],
+      "transform": {
+        "x": 952,
+        "y": 535.609375,
+        "width": 88,
+        "height": 99
+      }
+    },
+    {
+      "name": "Scale",
+      "parent": null,
+      "attr": [],
+      "transform": {
+        "x": 1073,
+        "y": 533.609375,
+        "width": 80,
+        "height": 95
+      }
+    },
+    {
+      "name": "Ui",
+      "parent": null,
+      "attr": [
+        {
+          "name": "parseparametrs()",
+          "primary": false,
+          "unique": false,
+          "nullable": false,
+          "type": null
+        }
+      ],
+      "transform": {
+        "x": 335,
+        "y": 32.609375,
+        "width": 136,
+        "height": 130
+      }
+    }
+  ],
+  "relations": [
+    [
+      {
+        "entity": "Filteraplyer",
+        "identifying": false,
+        "optional": true,
+        "cardinality": 1,
+        "xor": null,
+        "name": null,
+        "transform": {
+          "anchor": {
+            "x": 867,
+            "y": 333.109375,
+            "edge": 1
+          },
+          "points": [
+            {
+              "x": 964.5,
+              "y": 367.359375
+            }
+          ],
+          "manual": false
+        }
+      },
+      {
+        "entity": "Abstractfilter",
+        "identifying": true,
+        "optional": false,
+        "cardinality": 0,
+        "xor": null,
+        "name": null,
+        "transform": {
+          "anchor": {
+            "x": 1062,
+            "y": 401.609375,
+            "edge": 3
+          },
+          "points": [
+            {
+              "x": 964.5,
+              "y": 367.359375
+            }
+          ],
+          "manual": false
+        }
+      }
+    ],
+    [
+      {
+        "entity": "Flip",
+        "identifying": true,
+        "optional": false,
+        "cardinality": 1,
+        "xor": null,
+        "name": null,
+        "transform": {
+          "anchor": {
+            "x": 1248.5,
+            "y": 531.609375,
+            "edge": 0
+          },
+          "points": [
+            {
+              "x": 1191.75,
+              "y": 501.609375
+            }
+          ],
+          "manual": false
+        }
+      },
+      {
+        "entity": "Abstractfilter",
+        "identifying": false,
+        "optional": true,
+        "cardinality": 1,
+        "xor": null,
+        "name": null,
+        "transform": {
+          "anchor": {
+            "x": 1135,
+            "y": 471.609375,
+            "edge": 2
+          },
+          "points": [
+            {
+              "x": 1191.75,
+              "y": 501.609375
+            }
+          ],
+          "manual": false
+        }
+      }
+    ],
+    [
+      {
+        "entity": "Imagesaverinterface",
+        "identifying": false,
+        "optional": true,
+        "cardinality": 1,
+        "xor": null,
+        "name": null,
+        "transform": {
+          "anchor": {
+            "x": 767,
+            "y": 100.359375,
+            "edge": 1
+          },
+          "points": [
+            {
+              "x": 819,
+              "y": 129.734375
+            }
+          ],
+          "manual": false
+        }
+      },
+      {
+        "entity": "Fileimagesaver",
+        "identifying": true,
+        "optional": false,
+        "cardinality": 1,
+        "xor": null,
+        "name": null,
+        "transform": {
+          "anchor": {
+            "x": 871,
+            "y": 159.109375,
+            "edge": 3
+          },
+          "points": [
+            {
+              "x": 819,
+              "y": 129.734375
+            }
+          ],
+          "manual": false
+        }
+      }
+    ],
+    [
+      {
+        "entity": "Imagetoasciiconverterinterface",
+        "identifying": false,
+        "optional": true,
+        "cardinality": 1,
+        "xor": null,
+        "name": null,
+        "transform": {
+          "anchor": {
+            "x": 572.203125,
+            "y": 392.609375,
+            "edge": 1
+          },
+          "points": [
+            {
+              "x": 637.3515625,
+              "y": 415.109375
+            }
+          ],
+          "manual": false
+        }
+      },
+      {
+        "entity": "Default",
+        "identifying": true,
+        "optional": false,
+        "cardinality": 1,
+        "xor": null,
+        "name": null,
+        "transform": {
+          "anchor": {
+            "x": 691.5,
+            "y": 448.609375,
+            "edge": 0
+          },
+          "points": [
+            {
+              "x": 637.3515625,
+              "y": 415.109375
+            }
+          ],
+          "manual": false
+        }
+      }
+    ],
+    [
+      {
+        "entity": "Jpgloader",
+        "identifying": true,
+        "optional": false,
+        "cardinality": 1,
+        "xor": null,
+        "name": null,
+        "transform": {
+          "anchor": {
+            "x": 151,
+            "y": 542.609375,
+            "edge": 0
+          },
+          "points": [
+            {
+              "x": 151,
+              "y": 481.609375
+            }
+          ],
+          "manual": false
+        }
+      },
+      {
+        "entity": "Imageloaderinterface",
+        "identifying": false,
+        "optional": true,
+        "cardinality": 1,
+        "xor": null,
+        "name": null,
+        "transform": {
+          "anchor": {
+            "x": 136.50732421875,
+            "y": 404.609375,
+            "edge": 2
+          },
+          "points": [
+            {
+              "x": 151,
+              "y": 481.609375
+            }
+          ],
+          "manual": false
+        }
+      }
+    ],
+    [
+      {
+        "entity": "Linearuserinputed",
+        "identifying": true,
+        "optional": false,
+        "cardinality": 1,
+        "xor": null,
+        "name": null,
+        "transform": {
+          "anchor": {
+            "x": 417.0390625,
+            "y": 450.609375,
+            "edge": 0
+          },
+          "points": [
+            {
+              "x": 453.8203125,
+              "y": 427.609375
+            }
+          ],
+          "manual": false
+        }
+      },
+      {
+        "entity": "Imagetoasciiconverterinterface",
+        "identifying": false,
+        "optional": true,
+        "cardinality": 1,
+        "xor": null,
+        "name": null,
+        "transform": {
+          "anchor": {
+            "x": 490.6015625,
+            "y": 404.609375,
+            "edge": 2
+          },
+          "points": [
+            {
+              "x": 453.8203125,
+              "y": 427.609375
+            }
+          ],
+          "manual": false
+        }
+      }
+    ],
+    [
+      {
+        "entity": "Nonlinear",
+        "identifying": true,
+        "optional": false,
+        "cardinality": 1,
+        "xor": null,
+        "name": null,
+        "transform": {
+          "anchor": {
+            "x": 554.5,
+            "y": 448.609375,
+            "edge": 0
+          },
+          "points": [
+            {
+              "x": 540.451171875,
+              "y": 426.609375
+            }
+          ],
+          "manual": false
+        }
+      },
+      {
+        "entity": "Imagetoasciiconverterinterface",
+        "identifying": false,
+        "optional": true,
+        "cardinality": 1,
+        "xor": null,
+        "name": null,
+        "transform": {
+          "anchor": {
+            "x": 526.40234375,
+            "y": 404.609375,
+            "edge": 2
+          },
+          "points": [
+            {
+              "x": 540.451171875,
+              "y": 426.609375
+            }
+          ],
+          "manual": false
+        }
+      }
+    ],
+    [
+      {
+        "entity": "Pngloader",
+        "identifying": true,
+        "optional": false,
+        "cardinality": 1,
+        "xor": null,
+        "name": null,
+        "transform": {
+          "anchor": {
+            "x": 223,
+            "y": 440.609375,
+            "edge": 0
+          },
+          "points": [
+            {
+              "x": 186.375,
+              "y": 422.609375
+            }
+          ],
+          "manual": false
+        }
+      },
+      {
+        "entity": "Imageloaderinterface",
+        "identifying": false,
+        "optional": true,
+        "cardinality": 1,
+        "xor": null,
+        "name": null,
+        "transform": {
+          "anchor": {
+            "x": 149.75,
+            "y": 404.609375,
+            "edge": 2
+          },
+          "points": [
+            {
+              "x": 186.375,
+              "y": 422.609375
+            }
+          ],
+          "manual": false
+        }
+      }
+    ],
+    [
+      {
+        "entity": "Printimagesaver",
+        "identifying": true,
+        "optional": false,
+        "cardinality": 1,
+        "xor": null,
+        "name": null,
+        "transform": {
+          "anchor": {
+            "x": 875,
+            "y": 52.109375,
+            "edge": 3
+          },
+          "points": [
+            {
+              "x": 821,
+              "y": 66.109375
+            }
+          ],
+          "manual": false
+        }
+      },
+      {
+        "entity": "Imagesaverinterface",
+        "identifying": false,
+        "optional": true,
+        "cardinality": 1,
+        "xor": null,
+        "name": null,
+        "transform": {
+          "anchor": {
+            "x": 767,
+            "y": 80.109375,
+            "edge": 1
+          },
+          "points": [
+            {
+              "x": 821,
+              "y": 66.109375
+            }
+          ],
+          "manual": false
+        }
+      }
+    ],
+    [
+      {
+        "entity": "Randomloader",
+        "identifying": true,
+        "optional": false,
+        "cardinality": 1,
+        "xor": null,
+        "name": null,
+        "transform": {
+          "anchor": {
+            "x": 74,
+            "y": 444.609375,
+            "edge": 0
+          },
+          "points": [
+            {
+              "x": 94.75,
+              "y": 424.609375
+            }
+          ],
+          "manual": false
+        }
+      },
+      {
+        "entity": "Imageloaderinterface",
+        "identifying": false,
+        "optional": true,
+        "cardinality": 1,
+        "xor": null,
+        "name": null,
+        "transform": {
+          "anchor": {
+            "x": 115.5,
+            "y": 404.609375,
+            "edge": 2
+          },
+          "points": [
+            {
+              "x": 94.75,
+              "y": 424.609375
+            }
+          ],
+          "manual": false
+        }
+      }
+    ],
+    [
+      {
+        "entity": "Rotate",
+        "identifying": true,
+        "optional": false,
+        "cardinality": 1,
+        "xor": null,
+        "name": null,
+        "transform": {
+          "anchor": {
+            "x": 996,
+            "y": 535.609375,
+            "edge": 0
+          },
+          "points": [
+            {
+              "x": 1023.5,
+              "y": 473.109375
+            }
+          ],
+          "manual": false
+        }
+      },
+      {
+        "entity": "Abstractfilter",
+        "identifying": false,
+        "optional": true,
+        "cardinality": 1,
+        "xor": null,
+        "name": null,
+        "transform": {
+          "anchor": {
+            "x": 1062,
+            "y": 421.609375,
+            "edge": 3
+          },
+          "points": [
+            {
+              "x": 1023.5,
+              "y": 473.109375
+            }
+          ],
+          "manual": false
+        }
+      }
+    ],
+    [
+      {
+        "entity": "Scale",
+        "identifying": true,
+        "optional": false,
+        "cardinality": 1,
+        "xor": null,
+        "name": null,
+        "transform": {
+          "anchor": {
+            "x": 1113,
+            "y": 533.609375,
+            "edge": 0
+          },
+          "points": [
+            {
+              "x": 1113.5,
+              "y": 502.609375
+            }
+          ],
+          "manual": false
+        }
+      },
+      {
+        "entity": "Abstractfilter",
+        "identifying": false,
+        "optional": true,
+        "cardinality": 1,
+        "xor": null,
+        "name": null,
+        "transform": {
+          "anchor": {
+            "x": 1114,
+            "y": 471.609375,
+            "edge": 2
+          },
+          "points": [
+            {
+              "x": 1113.5,
+              "y": 502.609375
+            }
+          ],
+          "manual": false
+        }
+      }
+    ],
+    [
+      {
+        "entity": "Ui",
+        "identifying": true,
+        "optional": false,
+        "cardinality": 1,
+        "xor": null,
+        "name": null,
+        "transform": {
+          "anchor": {
+            "x": 403,
+            "y": 162.609375,
+            "edge": 2
+          },
+          "points": [
+            {
+              "x": 304,
+              "y": 258.359375
+            }
+          ],
+          "manual": false
+        }
+      },
+      {
+        "entity": "Imageloaderinterface",
+        "identifying": false,
+        "optional": true,
+        "cardinality": 1,
+        "xor": null,
+        "name": null,
+        "transform": {
+          "anchor": {
+            "x": 194,
+            "y": 343.109375,
+            "edge": 1
+          },
+          "points": [
+            {
+              "x": 304,
+              "y": 258.359375
+            }
+          ],
+          "manual": false
+        }
+      }
+    ],
+    [
+      {
+        "entity": "Ui",
+        "identifying": true,
+        "optional": false,
+        "cardinality": 1,
+        "xor": null,
+        "name": null,
+        "transform": {
+          "anchor": {
+            "x": 432,
+            "y": 162.609375,
+            "edge": 2
+          },
+          "points": [
+            {
+              "x": 461.30078125,
+              "y": 215.609375
+            }
+          ],
+          "manual": false
+        }
+      },
+      {
+        "entity": "Imagetoasciiconverterinterface",
+        "identifying": false,
+        "optional": true,
+        "cardinality": 1,
+        "xor": null,
+        "name": null,
+        "transform": {
+          "anchor": {
+            "x": 490.6015625,
+            "y": 268.609375,
+            "edge": 0
+          },
+          "points": [
+            {
+              "x": 461.30078125,
+              "y": 215.609375
+            }
+          ],
+          "manual": false
+        }
+      }
+    ],
+    [
+      {
+        "entity": "Ui",
+        "identifying": true,
+        "optional": false,
+        "cardinality": 1,
+        "xor": null,
+        "name": null,
+        "transform": {
+          "anchor": {
+            "x": 471,
+            "y": 70.109375,
+            "edge": 1
+          },
+          "points": [
+            {
+              "x": 563,
+              "y": 75.109375
+            }
+          ],
+          "manual": false
+        }
+      },
+      {
+        "entity": "Imagesaverinterface",
+        "identifying": false,
+        "optional": true,
+        "cardinality": 1,
+        "xor": null,
+        "name": null,
+        "transform": {
+          "anchor": {
+            "x": 655,
+            "y": 80.109375,
+            "edge": 3
+          },
+          "points": [
+            {
+              "x": 563,
+              "y": 75.109375
+            }
+          ],
+          "manual": false
+        }
+      }
+    ],
+    [
+      {
+        "entity": "Ui",
+        "identifying": true,
+        "optional": false,
+        "cardinality": 1,
+        "xor": null,
+        "name": null,
+        "transform": {
+          "anchor": {
+            "x": 471,
+            "y": 97.609375,
+            "edge": 1
+          },
+          "points": [
+            {
+              "x": 583,
+              "y": 215.359375
+            }
+          ],
+          "manual": false
+        }
+      },
+      {
+        "entity": "Filteraplyer",
+        "identifying": false,
+        "optional": true,
+        "cardinality": 1,
+        "xor": null,
+        "name": null,
+        "transform": {
+          "anchor": {
+            "x": 695,
+            "y": 333.109375,
+            "edge": 3
+          },
+          "points": [
+            {
+              "x": 583,
+              "y": 215.359375
+            }
+          ],
+          "manual": false
+        }
+      }
+    ]
+  ],
+  "notes": []
+}
