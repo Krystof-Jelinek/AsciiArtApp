@@ -1,7 +1,11 @@
+package Parser
+
+import DataModels.CommandHolder
+import DataModels.Command
 
 class CommandParser {
   def parse(commands: Seq[String]) : CommandHolder = {
-    var commandHolder = new CommandHolder()
+    val commandHolder = new CommandHolder()
     var i = 0
     //creating new command string
     var cmdName = ""

@@ -1,3 +1,7 @@
+package DataModels
+
+import DataModels.Pixel
+
 class Image(val width: Int, val height: Int) {
   require(width > 0 && width <= 2048, "Width must be between 1 and 2048")
   require(height > 0 && height <= 1080, "Height must be between 1 and 1080")

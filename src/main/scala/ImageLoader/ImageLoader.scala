@@ -1,3 +1,7 @@
+package ImageLoader
+
+import DataModels.{Command, Image}
+
 class ImageLoader {
   def loadImage(loadCommand : Command): Image = {
     if(loadCommand.value.endsWith(".png")){

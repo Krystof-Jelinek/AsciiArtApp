@@ -1,3 +1,6 @@
+import ImageLoader.ImageLoader
+import Parser.CommandParser
+
 class AppController {
   def run(args: Seq[String]): Unit = {
     val parser = new CommandParser

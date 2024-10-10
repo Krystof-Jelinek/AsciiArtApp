@@ -1,3 +1,7 @@
+package DataModels
+
+import DataModels.Command
+
 import scala.collection.mutable.ArrayBuffer
 
 class CommandHolder {
