@@ -9,12 +9,8 @@ import javax.imageio.ImageIO
 
 class PngLoader extends ImageLoaderInterface {
   override def loadImage(path: String): Image = {
-    val file = new File(path)
-    if (!file.exists()) {
-      throw new FileNotFoundException(s"File not found: $path")
-    }
 
-    val bufferedImage: BufferedImage = ImageIO.read(file)
+    val bufferedImage: BufferedImage = ImageIO.read(new File(path))
 
     val width = bufferedImage.getWidth
     val height = bufferedImage.getHeight
