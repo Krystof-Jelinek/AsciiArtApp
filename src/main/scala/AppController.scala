@@ -3,6 +3,9 @@ class AppController {
     val parser = new CommandParser
     val cmdHolder = parser.parse(args)
 
+    val imageLoader = ImageLoader()
+    val image = imageLoader.loadImage(cmdHolder.loadCommand)
+
     println("WaitHere")
   }
 }
