@@ -1,5 +1,6 @@
 import DataModels.AsciiImage
 import ImageLoader.ImageLoader
+import ImageSaver.ImageSaver
 import Parser.CommandParser
 import TransformationHandelers.TransformationHandeler
 
@@ -8,14 +9,14 @@ class AppController {
     val parser = new CommandParser
     val cmdHolder = parser.parse(args)
 
-    val imageLoader = ImageLoader()
+    val imageLoader = new ImageLoader()
     val image = imageLoader.loadImage(cmdHolder.loadCommand)
 
     val transformationHandeler = new TransformationHandeler
     val asciiImage : AsciiImage = transformationHandeler.execute(image,cmdHolder.transformCommands)
 
-    println(asciiImage.value)
+    val imageSaver =  new ImageSaver()
+    imageSaver.saveImage(asciiImage, cmdHolder.saveCommands)
 
-    println("WaitHere")
   }
 }
