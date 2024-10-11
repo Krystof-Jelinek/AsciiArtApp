@@ -68,4 +68,77 @@ class ImageTest extends AnyFunSuite {
       val img = new Image(2049, 108)
     }
   }
+
+  test("Resize test shrinking"){
+    val img = new Image(10,10)
+    img.resize(5,5)
+    assert(img.width == 5)
+    assert(img.height == 5)
+    assert(img.getPixel(4,4).get == Pixel(0,0,0))
+    assertThrows[IndexOutOfBoundsException]{
+      img.pixels(4)(5)
+    }
+    assertThrows[IndexOutOfBoundsException] {
+      img.pixels(5)
+    }
+
+    img.resize(3,3)
+    assert(img.width == 3)
+    assert(img.height == 3)
+    assert(img.getPixel(2, 2).get == Pixel(0, 0, 0))
+    assert(img.getPixel(0, 0).get == Pixel(0, 0, 0))
+    assertThrows[IndexOutOfBoundsException] {
+      img.pixels(2)(3)
+    }
+    assertThrows[IndexOutOfBoundsException] {
+      img.pixels(3)
+    }
+
+  }
+
+  test("Resize test enlarging"){
+    val img = new Image(1, 1)
+    img.setPixel(0,0,Pixel(100,100,100))
+    img.resize(3, 3)
+    assert(img.width == 3)
+    assert(img.height == 3)
+    assert(img.getPixel(2, 2).get == Pixel(0, 0, 0))
+    assert(img.getPixel(0, 0).get == Pixel(100, 100, 100))
+    assertThrows[IndexOutOfBoundsException] {
+      img.pixels(2)(3)
+    }
+    assertThrows[IndexOutOfBoundsException] {
+      img.pixels(3)
+    }
+
+    img.resize(5, 5)
+    assert(img.width == 5)
+    assert(img.height == 5)
+    assert(img.getPixel(2, 2).get == Pixel(0, 0, 0))
+    assert(img.getPixel(4, 3).get == Pixel(0, 0, 0))
+    assert(img.getPixel(0, 0).get == Pixel(100, 100, 100))
+    assertThrows[IndexOutOfBoundsException] {
+      img.pixels(4)(5)
+    }
+    assertThrows[IndexOutOfBoundsException] {
+      img.pixels(5)
+    }
+  }
+
+  test("Cant resize to bigger then max size or negative size"){
+    assertThrows[IllegalArgumentException] {
+      val img = new Image(100, 100)
+      img.resize(0,50)
+    }
+    assertThrows[IllegalArgumentException] {
+      val img = new Image(100, 100)
+      img.resize(50, 0)
+    }
+
+    assertThrows[IllegalArgumentException] {
+      val img = new Image(100, 100)
+      img.resize(4000, 15)
+    }
+  }
+
 }

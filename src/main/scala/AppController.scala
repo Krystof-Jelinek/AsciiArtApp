@@ -10,7 +10,7 @@ class AppController {
     val cmdHolder = parser.parse(args)
 
     val imageLoader = new ImageLoader()
-    val image = imageLoader.loadImage(cmdHolder.loadCommand)
+    var image = imageLoader.loadImage(cmdHolder.loadCommand)
 
     val transformationHandeler = new TransformationHandeler
     val asciiImage : AsciiImage = transformationHandeler.execute(image,cmdHolder.transformCommands)
