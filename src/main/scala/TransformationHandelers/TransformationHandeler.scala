@@ -1,7 +1,7 @@
 package TransformationHandelers
 
 import DataModels.{AsciiImage, Command, Image}
-import TransformationHandelers.Converters.{ConversionTable, ImageConverterInterface, LinearConverter}
+import TransformationHandelers.Converters.{ConversionTable, ImageConverterInterface, LinearConverter, NonLinearConverter}
 
 import scala.collection.mutable.ArrayBuffer
 
