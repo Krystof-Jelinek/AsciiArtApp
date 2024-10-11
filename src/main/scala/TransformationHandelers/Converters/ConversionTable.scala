@@ -9,6 +9,9 @@ class ConversionTable {
     ,'"','^','`','\'','.',' ')
 
   def setTable(input : String) : Unit = {
+    if(input.isEmpty){
+      throw IllegalArgumentException("Can have empty conversion table")
+    }
     charTable.clear()
     charTable ++= input.toCharArray
   }
