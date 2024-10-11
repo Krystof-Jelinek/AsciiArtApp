@@ -1,3 +1,3 @@
 package DataModels
 
-class Command(var name: String = "", var value: String = "")
+case class Command(var name: String = "", var value: String = "")
