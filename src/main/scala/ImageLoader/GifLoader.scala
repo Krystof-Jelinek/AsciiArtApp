@@ -1,4 +1,4 @@
 package ImageLoader
 
-class GifLoader extends StandartFormatImageLoader {
+class GifLoader(path : String) extends StandartFormatImageLoader(path) {
 }

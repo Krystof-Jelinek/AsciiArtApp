@@ -7,5 +7,5 @@ import java.awt.image.BufferedImage
 import java.io.{File, FileNotFoundException}
 import javax.imageio.ImageIO
 
-class PngLoader extends StandartFormatImageLoader {
+class PngLoader(path : String) extends StandartFormatImageLoader(path) {
 }

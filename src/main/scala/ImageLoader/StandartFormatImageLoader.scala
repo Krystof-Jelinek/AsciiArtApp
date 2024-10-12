@@ -6,8 +6,8 @@ import java.awt.image.BufferedImage
 import java.io.File
 import javax.imageio.ImageIO
 
-class StandartFormatImageLoader extends ImageLoaderInterface {
-  override def loadImage(path: String): Image = {
+class StandartFormatImageLoader(path : String) extends ImageLoaderInterface {
+  override def loadImage(): Image = {
 
     val bufferedImage: BufferedImage = ImageIO.read(new File(path))
 

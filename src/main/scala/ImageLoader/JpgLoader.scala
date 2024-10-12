@@ -2,5 +2,5 @@ package ImageLoader
 
 import DataModels.Image
 
-class JpgLoader extends StandartFormatImageLoader {
+class JpgLoader(path : String) extends StandartFormatImageLoader(path) {
 }
