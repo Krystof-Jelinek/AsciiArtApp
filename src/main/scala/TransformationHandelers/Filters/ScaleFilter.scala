@@ -6,14 +6,19 @@ class ScaleFilter(val size : Float) extends Filter {
     if(size.toInt == 1){
       return
     }
-    if (size.toInt == 4) {
+    else if (size.toInt == 4) {
       enlarge(img)
     }
-
+    else if(size == 0.25){
+      shrink(img)
+    }
+    else{
+      throw IllegalArgumentException("Invalid argument for scale filter")
+    }
   }
 
   private def enlarge(img: Image): Unit = {
-    img.resize(img.height*2, img.width*2)
+    img.resize(img.width*2, img.height*2)
 
     //backward indexes:
     var backX = img.width - 1
@@ -40,4 +45,40 @@ class ScaleFilter(val size : Float) extends Filter {
     }
   }
 
+  private def shrink(img: Image) : Unit = {
+    if(img.width == 1 || img.height == 1){
+      throw IllegalArgumentException("This image cant be shrinked anymore its dimensions are too small already")
+    }
+
+    //if the dimensions of the image are not even we make them even (adding one line of black pixels that will change the image a bit but customer wanned it that way
+    //how convinient
+    if(img.width % 2 == 1){
+      img.resize(img. width + 1, img.height)
+    }
+
+    if (img.height % 2 == 1) {
+      img.resize(img.width, img.height + 1)
+    }
+
+    //get indexes:
+    var getX = 0
+    var getY = 0
+
+    //write indexes
+    var writeX = 0
+    var writeY = 0
+
+    while (getY < img.height) {
+      while (getX < img.width) {
+        img.setPixel(writeX, writeY, img.getPixel(getX, getY).get)
+        writeX += 1
+        getX += 2
+      }
+      writeX = 0
+      getX = 0
+      getY += 2
+      writeY += 1
+    }
+    img.resize(img.width/2, img.height/2)
+  }
 }

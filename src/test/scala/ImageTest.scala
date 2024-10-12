@@ -69,6 +69,20 @@ class ImageTest extends AnyFunSuite {
     }
   }
 
+  test("Resize test same size"){
+    val img = new Image(5, 5)
+    img.resize(5, 5)
+    assert(img.width == 5)
+    assert(img.height == 5)
+    assert(img.getPixel(4, 4).get == Pixel(0, 0, 0))
+    assertThrows[IndexOutOfBoundsException] {
+      img.pixels(4)(5)
+    }
+    assertThrows[IndexOutOfBoundsException] {
+      img.pixels(5)
+    }
+  }
+
   test("Resize test shrinking"){
     val img = new Image(10,10)
     img.resize(5,5)
