@@ -2,7 +2,7 @@ package TransformationHandelers
 
 import DataModels.{AsciiImage, Command, Image}
 import TransformationHandelers.Converters.{ConversionTable, ImageConverterInterface, LinearConverter, NonLinearConverter}
-import Filters.{Filter, InvertFilter, ScaleFilter}
+import Filters.{BrightnessFilter, Filter, InvertFilter, ScaleFilter}
 
 import scala.collection.mutable.ArrayBuffer
 
@@ -18,6 +18,7 @@ class TransformationHandeler {
         case "--invert" => filterArray.addOne(InvertFilter())
         case "--table-non-linear" => converter = new NonLinearConverter(table)
         case "--scale" => filterArray.addOne(ScaleFilter(command.value.toFloat))
+        case "--brightness" => filterArray.addOne(BrightnessFilter(command.value.toInt))
         case _ => throw IllegalArgumentException("Invalid filter or table argument")
       }
     }
