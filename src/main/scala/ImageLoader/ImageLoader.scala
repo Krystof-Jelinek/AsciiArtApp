@@ -16,6 +16,14 @@ class ImageLoader {
       val loader: ImageLoaderInterface = new PngLoader()
       return loader.loadImage(loadCommand.value)
     }
+    else if(loadCommand.value.endsWith(".jpg")){
+      val loader: ImageLoaderInterface = new JpgLoader()
+      return loader.loadImage(loadCommand.value)
+    }
+    else if(loadCommand.value.endsWith(".gif")){
+      val loader: ImageLoaderInterface = new GifLoader()
+      return loader.loadImage(loadCommand.value)
+    }
     else{
       throw IllegalArgumentException("Unsupported image format")
     }
