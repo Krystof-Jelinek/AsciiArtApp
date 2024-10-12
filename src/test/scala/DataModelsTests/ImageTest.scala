@@ -1,3 +1,5 @@
+package DataModelsTests
+
 import DataModels.{Image, Pixel}
 import org.scalatest.funsuite.AnyFunSuite
 

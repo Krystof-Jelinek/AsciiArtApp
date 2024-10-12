@@ -1,6 +1,8 @@
-import org.scalatest.funsuite.AnyFunSuite
-import TransformationHandelers.Filters.ScaleFilter
+package FilterTests
+
 import DataModels.{Image, Pixel}
+import TransformationHandelers.Filters.ScaleFilter
+import org.scalatest.funsuite.AnyFunSuite
 
 class ScaleFilterTest extends AnyFunSuite{
   test("test for scale 1"){

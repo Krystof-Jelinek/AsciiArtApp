@@ -1,6 +1,8 @@
+package IOTests
+
+import DataModels.Command
 import Parser.CommandParser
 import org.scalatest.funsuite.AnyFunSuite
-import DataModels.Command
 
 class ParserTest extends AnyFunSuite{
   test("image loading test"){

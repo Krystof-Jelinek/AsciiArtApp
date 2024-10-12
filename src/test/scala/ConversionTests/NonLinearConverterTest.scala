@@ -1,15 +1,14 @@
+package ConversionTests
+
+import DataModels.{Image, Pixel}
+import TransformationHandelers.Converters.{ConversionTable, LinearConverter, NonLinearConverter}
 import org.scalatest.funsuite.AnyFunSuite
-import DataModels.Image
-import TransformationHandelers.Converters.LinearConverter
-import TransformationHandelers.Converters.ConversionTable
-import DataModels.Pixel
 
-class LinearConverterTest extends AnyFunSuite{
-
-  test("valid default test"){
-    val image = new Image(2,2)
+class NonLinearConverterTest extends AnyFunSuite{
+  test("valid default test") {
+    val image = new Image(2, 2)
     val table = new ConversionTable
-    val converter = new LinearConverter(table)
+    val converter = new NonLinearConverter(table)
     val res = converter.convert(image)
 
     assert(res.value == "$$\n$$\n")
@@ -22,7 +21,7 @@ class LinearConverterTest extends AnyFunSuite{
 
     table.setTable("1234")
 
-    val converter = new LinearConverter(table)
+    val converter = new NonLinearConverter(table)
     val res = converter.convert(image)
 
     assert(res.value == "11\n11\n")
@@ -33,8 +32,10 @@ class LinearConverterTest extends AnyFunSuite{
 
     image.setPixel(0,0,Pixel(255,255,255))
     image.setPixel(1,1,Pixel(120,120,120))
+    image.setPixel(0,1,Pixel(200,200,200))
+    image.setPixel(1,0,Pixel(201,201,201))
 
     val res3 = converter.convert(image)
-    assert(res3.value == "14\n43\n")
+    assert(res3.value == "13\n44\n")
   }
 }

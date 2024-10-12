@@ -1,3 +1,5 @@
+package ConversionTests
+
 import TransformationHandelers.Converters.ConversionTable
 import org.scalatest.funsuite.AnyFunSuite
 

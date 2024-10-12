@@ -1,3 +1,5 @@
+package IOTests
+
 import DataModels.{Command, Pixel}
 import ImageLoader.ImageLoader
 import org.scalatest.funsuite.AnyFunSuite

@@ -15,10 +15,10 @@ class TransformationHandeler {
     //process every command
     for(command : Command <- commands){
       command.name match {
-        case "--invert" => filterArray.addOne(InvertFilter())
         case "--table-non-linear" => converter = new NonLinearConverter(table)
-        case "--scale" => filterArray.addOne(ScaleFilter(command.value.toFloat))
+        case "--invert" => filterArray.addOne(InvertFilter())
         case "--brightness" => filterArray.addOne(BrightnessFilter(command.value.toInt))
+        case "--scale" => filterArray.addOne(ScaleFilter(command.value.toFloat))
         case _ => throw IllegalArgumentException("Invalid filter or table argument")
       }
     }

@@ -1,5 +1,7 @@
-import org.scalatest.funsuite.AnyFunSuite
+package DataModelsTests
+
 import DataModels.Pixel
+import org.scalatest.funsuite.AnyFunSuite
 
 
 class PixelTest extends AnyFunSuite{
