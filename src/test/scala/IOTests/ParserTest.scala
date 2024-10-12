@@ -52,4 +52,38 @@ class ParserTest extends AnyFunSuite{
     assert(res.saveCommands(1) == Command("--output-console", ""))
   }
 
+  test("One Parser parses multiple commands"){
+    val parser = new CommandParser()
+    var res = parser.parse(Seq[String]("--output-file", "Path/to/some/file", "--image-random", "--output-console"))
+
+    assert(res.saveCommands.nonEmpty)
+    assert(res.transformCommands.isEmpty)
+
+    assert(res.saveCommands(0) == Command("--output-file", "Path/to/some/file"))
+    assert(res.saveCommands(1) == Command("--output-console", ""))
+
+    var res2 = parser.parse(Seq[String]("--rotate", "+90", "--invert", "--scale", "0.25", "--random-new-command", "with some value", " + more value"))
+    assert(res2.loadCommand.name == "")
+    assert(res2.loadCommand.value == "")
+    assert(res2.saveCommands.isEmpty)
+    assert(res2.transformCommands.nonEmpty)
+
+    assert(res2.transformCommands(0).equals(Command("--rotate", "+90")))
+    assert(res2.transformCommands(1).equals(Command("--invert", "")))
+    assert(res2.transformCommands(2).equals(Command("--scale", "0.25")))
+    assert(res2.transformCommands(3).equals(Command("--random-new-command", "with some value + more value")))
+
+    val res3 = parser.parse(Seq[String]("--image", "Some/Path/somewhere/file.png"))
+    assert(res3.loadCommand.name == "--image")
+    assert(res3.loadCommand.value == "Some/Path/somewhere/file.png")
+    assert(res3.saveCommands.isEmpty)
+    assert(res3.transformCommands.isEmpty)
+
+    val res4 = parser.parse(Seq[String]("--image-random"))
+    assert(res4.loadCommand.name == "--image-random")
+    assert(res4.loadCommand.value == "")
+    assert(res4.saveCommands.isEmpty)
+    assert(res4.transformCommands.isEmpty)
+  }
+
 }
