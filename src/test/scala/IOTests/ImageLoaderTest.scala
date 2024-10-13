@@ -12,17 +12,42 @@ class ImageLoaderTest extends AnyFunSuite{
     val loader = new ImageLoader
     val command = Command("--image", "src/test/testPictures/penguin-smaller.png")
     val image = loader.loadImage(command)
-    image.getPixel(0,0) == Pixel(255,255,255)
+    assert(image.getPixel(0,0).get == Pixel(213,213,213))
 
     val command2 = Command("--image", "src/test/testPictures/penguin-smaller.jpg")
     val image2 = loader.loadImage(command2)
-    image2.getPixel(0, 0) == Pixel(255, 255, 255)
+    assert(image2.getPixel(0, 0).get == Pixel(212, 212, 212))
 
     val command3 = Command("--image", "src/test/testPictures/penguin-smaller.gif")
     val image3 = loader.loadImage(command3)
-    image3.getPixel(0, 0) == Pixel(255, 255, 255)
+    assert(image3.getPixel(0, 0).get == Pixel(213, 213, 213))
 
+    val command4 = Command("--image-random" , "rngSeed")
+    val image4 = loader.loadImage(command4)
+    assert(image4.getPixel(0, 0).get == Pixel(163,97,144))
 
+    val command5 = Command("--image-random")
+    val image5 = loader.loadImage(command5)
+    val image6 = loader.loadImage(command5)
+
+    assert(image5.getPixel(0,0).get != image6.getPixel(0,0).get, "You got extremely unlucky or the random generator isnt that random")
+
+  }
+
+  test("Testing loading of individual pictures"){
+    val loader = new ImageLoader
+    val command = Command("--image", "src/test/testPictures/testpicture.png")
+    val image = loader.loadImage(command)
+
+    assert(image.getPixel(0, 0).get == Pixel(0, 0, 0))
+    assert(image.getPixel(1, 0).get == Pixel(34, 177, 76))
+    assert(image.getPixel(2, 0).get == Pixel(255, 126, 0))
+    assert(image.getPixel(0, 1).get == Pixel(255, 255, 255))
+    assert(image.getPixel(1, 1).get == Pixel(153, 0, 48))
+    assert(image.getPixel(2, 1).get == Pixel(0, 183, 239))
+    assert(image.getPixel(0, 2).get == Pixel(168, 230, 29))
+    assert(image.getPixel(1, 2).get == Pixel(111, 49, 152))
+    assert(image.getPixel(2, 2).get == Pixel(237, 28, 36))
   }
 
   test("Unvalid path throws FileNotFoundException"){
