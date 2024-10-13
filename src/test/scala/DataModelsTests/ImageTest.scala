@@ -78,10 +78,10 @@ class ImageTest extends AnyFunSuite {
     assert(img.height == 5)
     assert(img.getPixel(4, 4).get == Pixel(0, 0, 0))
     assertThrows[IndexOutOfBoundsException] {
-      img.pixels(4)(5)
+      img.testInternalSize(4, 5)
     }
     assertThrows[IndexOutOfBoundsException] {
-      img.pixels(5)
+      img.testInternalSize(5, 0)
     }
   }
 
@@ -92,10 +92,10 @@ class ImageTest extends AnyFunSuite {
     assert(img.height == 5)
     assert(img.getPixel(4,4).get == Pixel(0,0,0))
     assertThrows[IndexOutOfBoundsException]{
-      img.pixels(4)(5)
+      img.testInternalSize(4, 5)
     }
     assertThrows[IndexOutOfBoundsException] {
-      img.pixels(5)
+      img.testInternalSize(5, 0)
     }
 
     img.resize(3,3)
@@ -104,10 +104,10 @@ class ImageTest extends AnyFunSuite {
     assert(img.getPixel(2, 2).get == Pixel(0, 0, 0))
     assert(img.getPixel(0, 0).get == Pixel(0, 0, 0))
     assertThrows[IndexOutOfBoundsException] {
-      img.pixels(2)(3)
+      img.testInternalSize(2,3)
     }
     assertThrows[IndexOutOfBoundsException] {
-      img.pixels(3)
+      img.testInternalSize(3,0)
     }
 
   }
@@ -121,10 +121,10 @@ class ImageTest extends AnyFunSuite {
     assert(img.getPixel(2, 2).get == Pixel(0, 0, 0))
     assert(img.getPixel(0, 0).get == Pixel(100, 100, 100))
     assertThrows[IndexOutOfBoundsException] {
-      img.pixels(2)(3)
+      img.testInternalSize(2,3)
     }
     assertThrows[IndexOutOfBoundsException] {
-      img.pixels(3)
+      img.testInternalSize(3,0)
     }
 
     img.resize(5, 5)
@@ -134,10 +134,10 @@ class ImageTest extends AnyFunSuite {
     assert(img.getPixel(4, 3).get == Pixel(0, 0, 0))
     assert(img.getPixel(0, 0).get == Pixel(100, 100, 100))
     assertThrows[IndexOutOfBoundsException] {
-      img.pixels(4)(5)
+      img.testInternalSize(4,5)
     }
     assertThrows[IndexOutOfBoundsException] {
-      img.pixels(5)
+      img.testInternalSize(5, 0)
     }
   }
 

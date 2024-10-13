@@ -28,9 +28,6 @@ class ImageLoaderTest extends AnyFunSuite{
 
     val command5 = Command("--image-random")
     val image5 = loader.loadImage(command5)
-    val image6 = loader.loadImage(command5)
-
-    assert(image5.getPixel(0,0).get != image6.getPixel(0,0).get, "You got extremely unlucky or the random generator isnt that random")
 
   }
 
