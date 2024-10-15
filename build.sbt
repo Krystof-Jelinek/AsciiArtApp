@@ -1,5 +1,3 @@
-import scoverage.ScoverageKeys.*
-
 name := "ASCIIArt"
 
 version := "1.0.0"

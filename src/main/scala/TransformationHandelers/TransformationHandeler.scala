@@ -18,10 +18,10 @@ class TransformationHandeler {
         case "--table-non-linear" => converter = new NonLinearConverter(table)
         case "--table" => table.setPredifinedTable(command.value.toInt)
         case "--custom-table" => table.setTable(command.value)
-        case "--invert" => filterArray.addOne(InvertFilter())
-        case "--brightness" => filterArray.addOne(BrightnessFilter(command.value.toInt))
-        case "--scale" => filterArray.addOne(ScaleFilter(command.value.toFloat))
-        case _ => throw IllegalArgumentException("Invalid filter or table argument")
+        case "--invert" => filterArray.addOne(createFilter(command.name, command.value))
+        case "--brightness" => filterArray.addOne(createFilter(command.name, command.value))
+        case "--scale" => filterArray.addOne(createFilter(command.name, command.value))
+        case _ => throw IllegalArgumentException("Invalid filter or table name")
       }
     }
 
@@ -30,5 +30,14 @@ class TransformationHandeler {
     }
 
     return converter.convert(img)
+  }
+
+  def createFilter(name : String, value : String) : Filter = {
+    name match {
+      case "--invert" => new InvertFilter()
+      case "--brightness" => new BrightnessFilter(value.toInt)
+      case "--scale" => new ScaleFilter(value.toFloat)
+      case _ => throw IllegalArgumentException("Invalid filter name")
+    }
   }
 }

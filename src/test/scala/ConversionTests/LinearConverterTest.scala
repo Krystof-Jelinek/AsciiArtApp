@@ -37,4 +37,19 @@ class LinearConverterTest extends AnyFunSuite{
     val res3 = converter.convert(image)
     assert(res3.value == "14\n43\n")
   }
+
+  test("small table test"){
+    val image = new Image(2, 2)
+    val table = new ConversionTable
+
+    table.setTable("0")
+    image.setPixel(0,0,Pixel(255,255,255))
+    image.setPixel(1,1,Pixel(120,120,120))
+
+    val converter = new LinearConverter(table)
+    val res = converter.convert(image)
+
+    assert(res.value == "00\n00\n")
+
+  }
 }

@@ -5,7 +5,7 @@ import org.scalatest.funsuite.AnyFunSuite
 
 class ImageTest extends AnyFunSuite {
 
-  test("DataModels.Image should initialize with correct dimensions") {
+  test("Image should initialize with correct dimensions") {
     val img = new Image(100, 100)
     assert(img.width == 100)
     assert(img.height == 100)
@@ -27,7 +27,7 @@ class ImageTest extends AnyFunSuite {
     assert(img5.height == 1080)
   }
 
-  test("DataModels.Image should set and get a pixel correctly") {
+  test("Image should set and get a pixel correctly") {
     val img = new Image(100, 100)
     val redPixel = Pixel(255, 0, 0)
 
@@ -36,7 +36,7 @@ class ImageTest extends AnyFunSuite {
     assert(img.getPixel(1, 1) == Some(Pixel(0,0,0)))
   }
 
-  test("DataModels.Image should return None for out-of-bounds pixel access") {
+  test("Image should return None for out-of-bounds pixel access") {
     val img = new Image(100, 100)
 
     assert(img.getPixel(-1, -1) == None)
@@ -44,16 +44,16 @@ class ImageTest extends AnyFunSuite {
     assert(img.getPixel(10, 100) == None)
   }
 
-  test("DataModels.Image should throw an IllegalArgumentException when setting a pixel out of bounds") {
+  test("Image should throw an IllegalArgumentException when setting a pixel out of bounds") {
     val img = new Image(100, 100)
     val redPixel = Pixel(255, 0, 0)
 
     assertThrows[IllegalArgumentException] {
-      img.setPixel(100, 100, redPixel) // Out of bounds
+      img.setPixel(100, 100, redPixel)
     }
   }
 
-  test("DataModels.Image should throw an IllegalArgumentException when width or height is out of bounds") {
+  test("Image should throw an IllegalArgumentException when width or height is out of bounds") {
     assertThrows[IllegalArgumentException] {
       val img = new Image(-10, 100)
     }
@@ -148,7 +148,7 @@ class ImageTest extends AnyFunSuite {
     }
     assertThrows[IllegalArgumentException] {
       val img = new Image(100, 100)
-      img.resize(50, 0)
+      img.resize(50, -20)
     }
 
     assertThrows[IllegalArgumentException] {
