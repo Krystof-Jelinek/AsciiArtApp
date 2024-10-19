@@ -11,7 +11,7 @@ class NonLinearConverterTest extends AnyFunSuite{
     val converter = new NonLinearConverter(table)
     val res = converter.convert(image)
 
-    assert(res.value == "$$\n$$\n")
+    assert(res.getString == "$$\n$$\n")
 
   }
 
@@ -24,11 +24,11 @@ class NonLinearConverterTest extends AnyFunSuite{
     val converter = new NonLinearConverter(table)
     val res = converter.convert(image)
 
-    assert(res.value == "11\n11\n")
+    assert(res.getString == "11\n11\n")
 
     table.setTable("4321")
     val res2 = converter.convert(image)
-    assert(res2.value == "44\n44\n")
+    assert(res2.getString == "44\n44\n")
 
     image.setPixel(0,0,Pixel(255,255,255))
     image.setPixel(1,1,Pixel(120,120,120))
@@ -36,6 +36,6 @@ class NonLinearConverterTest extends AnyFunSuite{
     image.setPixel(1,0,Pixel(201,201,201))
 
     val res3 = converter.convert(image)
-    assert(res3.value == "13\n44\n")
+    assert(res3.getString == "13\n44\n")
   }
 }

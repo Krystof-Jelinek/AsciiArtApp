@@ -4,7 +4,7 @@ import DataModels.AsciiImage
 
 class PrintSaver extends ImageSaverInterface {
   def saveImage(img : AsciiImage) : Unit = {
-    print(img.value)
+    print(img.getString)
   }
 
 }

@@ -6,6 +6,6 @@ import java.nio.file.{Files, Paths}
 
 class FileSaver(path : String) extends ImageSaverInterface {
   override def saveImage(img: AsciiImage): Unit = {
-    Files.write(Paths.get(path), img.value.getBytes(StandardCharsets.UTF_8))
+    Files.write(Paths.get(path), img.getString.getBytes(StandardCharsets.UTF_8))
   }
 }

@@ -12,7 +12,7 @@ class LinearConverterTest extends AnyFunSuite{
     val converter = new LinearConverter(table)
     val res = converter.convert(image)
 
-    assert(res.value == "$$\n$$\n")
+    assert(res.getString == "$$\n$$\n")
 
   }
 
@@ -25,17 +25,17 @@ class LinearConverterTest extends AnyFunSuite{
     val converter = new LinearConverter(table)
     val res = converter.convert(image)
 
-    assert(res.value == "11\n11\n")
+    assert(res.getString == "11\n11\n")
 
     table.setTable("4321")
     val res2 = converter.convert(image)
-    assert(res2.value == "44\n44\n")
+    assert(res2.getString == "44\n44\n")
 
     image.setPixel(0,0,Pixel(255,255,255))
     image.setPixel(1,1,Pixel(120,120,120))
 
     val res3 = converter.convert(image)
-    assert(res3.value == "14\n43\n")
+    assert(res3.getString == "14\n43\n")
   }
 
   test("small table test"){
@@ -49,7 +49,7 @@ class LinearConverterTest extends AnyFunSuite{
     val converter = new LinearConverter(table)
     val res = converter.convert(image)
 
-    assert(res.value == "00\n00\n")
+    assert(res.getString == "00\n00\n")
 
   }
 }

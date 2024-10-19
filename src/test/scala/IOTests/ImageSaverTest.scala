@@ -12,7 +12,22 @@ class ImageSaverTest extends AnyFunSuite{
 
   test("Valid path and command saves image"){
     val saver = new ImageSaver
-    val asciiImage = AsciiImage("TestImage\nNextValue\n@@@@")
+    val asciiImage = AsciiImage(4,3)
+    //Test\nNext\n@@@@\n
+    asciiImage.setChar(0,0, 'T')
+    asciiImage.setChar(1,0, 'e')
+    asciiImage.setChar(2,0, 's')
+    asciiImage.setChar(3,0, 't')
+    asciiImage.setChar(0,1, 'N')
+    asciiImage.setChar(1,1, 'e')
+    asciiImage.setChar(2,1, 'x')
+    asciiImage.setChar(3,1, 't')
+    asciiImage.setChar(0, 2, '@')
+    asciiImage.setChar(1, 2, '@')
+    asciiImage.setChar(2, 2, '@')
+    asciiImage.setChar(3, 2, '@')
+
+    assert(asciiImage.getString == "Test\nNext\n@@@@\n")
     val path = "src/test/testPictures/result.txt"
 
     val outputStream = new ByteArrayOutputStream()
@@ -29,8 +44,8 @@ class ImageSaverTest extends AnyFunSuite{
     assert(Files.exists(Paths.get(path)))
 
     val fileContent = Files.readAllLines(Paths.get(path))
-    assert(fileContent.get(0) == "TestImage")
-    assert(fileContent.get(1) == "NextValue")
+    assert(fileContent.get(0) == "Test")
+    assert(fileContent.get(1) == "Next")
     assert(fileContent.get(2) == "@@@@")
 
     Files.deleteIfExists(Paths.get(path))
@@ -38,7 +53,20 @@ class ImageSaverTest extends AnyFunSuite{
 
   test("Invalid command throws error"){
     val saver = new ImageSaver
-    val asciiImage = new AsciiImage("TestImage\nNextValue\n@@@@")
+    val asciiImage = AsciiImage(4,3)
+    //Test\nNext\n@@@@\n
+    asciiImage.setChar(0,0, 'T')
+    asciiImage.setChar(1,0, 'e')
+    asciiImage.setChar(2,0, 's')
+    asciiImage.setChar(3,0, 't')
+    asciiImage.setChar(0,1, 'N')
+    asciiImage.setChar(1,1, 'e')
+    asciiImage.setChar(2,1, 'x')
+    asciiImage.setChar(3,1, 't')
+    asciiImage.setChar(0, 2, '@')
+    asciiImage.setChar(1, 2, '@')
+    asciiImage.setChar(2, 2, '@')
+    asciiImage.setChar(3, 2, '@')
     val path = "src/test/testPictures/result.txt"
 
     assertThrows[IllegalArgumentException]{
