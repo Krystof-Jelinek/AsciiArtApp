@@ -1,16 +1,31 @@
 package TransformationHandelers
 
-import DataModels.{AsciiImage, Command, Image, PixelImage}
+import DataModels.{AsciiImage, Command, PixelImage}
 import TransformationHandelers.Converters.{ConversionTable, ImageConverterInterface, LinearConverter, NonLinearConverter}
 import Filters.{BrightnessFilter, Filter, InvertFilter, ScaleFilter}
 
 import scala.collection.mutable.ArrayBuffer
 
 class TransformationHandeler {
-  var table = new ConversionTable
+  var table: ConversionTable = new ConversionTable
+  private var imgConverter : ImageConverterInterface = new LinearConverter(table)
+  private val filterArray = ArrayBuffer.empty[Filter]
+
+  def setImageConverterInterface(in : ImageConverterInterface): Unit = {
+    imgConverter = in
+  }
+
+  def addFilter(in : Filter): Unit = {
+    filterArray.addOne(in)
+  }
+
+  def accessTable() : ConversionTable = {
+    table
+  }
+
+
   def execute(img : PixelImage, commands: ArrayBuffer[Command]) : AsciiImage= {
     var converter: ImageConverterInterface = new LinearConverter(table)
-    val filterArray = ArrayBuffer.empty[Filter]
 
     //process every command
     for(command : Command <- commands){
