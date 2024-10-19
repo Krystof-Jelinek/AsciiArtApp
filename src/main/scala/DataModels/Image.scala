@@ -1,9 +1,8 @@
 package DataModels
 
 import scala.collection.mutable.ArrayBuffer
-import scala.reflect.ClassTag
 
-abstract class Image[T : ClassTag](var width: Int, var height: Int, defaultValue : T) {
+abstract class Image[T](var width: Int, var height: Int, defaultValue : T) {
   require(width > 0 && width <= 2048, "Width of Image must be between 1 and 2048")
   require(height > 0 && height <= 1080, "Height of Image must be between 1 and 1080")
 
