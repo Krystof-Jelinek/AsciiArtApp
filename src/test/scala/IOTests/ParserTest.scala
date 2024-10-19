@@ -2,6 +2,7 @@ package IOTests
 
 import Commands.LoaderCommands.{LoadPngImageCommand, RandomImageCommand}
 import Commands.SaverCommands.{OutputConsoleCommand, OutputFileCommand}
+import Commands.TransformCommands.{BrightnessFilterCommand, InvertFilterCommand, ScaleFilterCommand}
 import DataModels.StringCommandTemplate
 import Parser.CommandParser
 import org.scalatest.funsuite.AnyFunSuite
@@ -39,7 +40,7 @@ class ParserTest extends AnyFunSuite{
 
   test("filter parsing test") {
     val parser = new CommandParser()
-    var res = parser.parse(Seq[String]("--rotate", "+90", "--invert", "--scale", "0.25", "--random-new-command", "with some value", " + more value"))
+    var res = parser.parse(Seq[String]("--invert", "--scale", "0.25", "--brightness", "20"))
     res.loadCommand match {
       case loadCmd: RandomImageCommand =>
         assert(loadCmd.seed == "")
@@ -49,10 +50,19 @@ class ParserTest extends AnyFunSuite{
     assert(res.saveCommands.isEmpty)
     assert(res.transformCommands.nonEmpty)
 
-    assert(res.transformCommands(0).equals(StringCommandTemplate("--rotate", "+90")))
-    assert(res.transformCommands(1).equals(StringCommandTemplate("--invert", "")))
-    assert(res.transformCommands(2).equals(StringCommandTemplate("--scale", "0.25")))
-    assert(res.transformCommands(3).equals(StringCommandTemplate("--random-new-command", "with some value + more value")))
+    assert(res.transformCommands(0).isInstanceOf[InvertFilterCommand])
+    res.transformCommands(1) match {
+      case cmd: ScaleFilterCommand =>
+        assert(cmd.scale == 0.25)
+      case _ =>
+        fail("Expected ScaleFilterCommand, but got something else")
+    }
+    res.transformCommands(2) match {
+      case cmd: BrightnessFilterCommand =>
+        assert(cmd.intensity == 20)
+      case _ =>
+        fail("Expected BrightnessFilterCommand, but got something else")
+    }
   }
 
   test("save parsing test") {
@@ -85,7 +95,7 @@ class ParserTest extends AnyFunSuite{
     }
     assert(res.saveCommands(1).isInstanceOf[OutputConsoleCommand])
 
-    var res2 = parser.parse(Seq[String]("--rotate", "+90", "--invert", "--scale", "0.25", "--random-new-command", "with some value", " + more value"))
+    var res2 = parser.parse(Seq[String]("--invert", "--scale", "0.25", "--brightness", "20"))
     res.loadCommand match {
       case loadCmd: RandomImageCommand =>
         assert(loadCmd.seed == "")
@@ -95,10 +105,19 @@ class ParserTest extends AnyFunSuite{
     assert(res2.saveCommands.isEmpty)
     assert(res2.transformCommands.nonEmpty)
 
-    assert(res2.transformCommands(0).equals(StringCommandTemplate("--rotate", "+90")))
-    assert(res2.transformCommands(1).equals(StringCommandTemplate("--invert", "")))
-    assert(res2.transformCommands(2).equals(StringCommandTemplate("--scale", "0.25")))
-    assert(res2.transformCommands(3).equals(StringCommandTemplate("--random-new-command", "with some value + more value")))
+    assert(res2.transformCommands(0).isInstanceOf[InvertFilterCommand])
+    res2.transformCommands(1) match {
+      case cmd: ScaleFilterCommand =>
+        assert(cmd.scale == 0.25)
+      case _ =>
+        fail("Expected ScaleFilterCommand, but got something else")
+    }
+    res2.transformCommands(2) match {
+      case cmd: BrightnessFilterCommand =>
+        assert(cmd.intensity == 20)
+      case _ =>
+        fail("Expected BrightnessFilterCommand, but got something else")
+    }
 
     val res3 = parser.parse(Seq[String]("--image", "Some/Path/somewhere/file.png"))
     res3.loadCommand match {

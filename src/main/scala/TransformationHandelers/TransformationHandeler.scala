@@ -1,8 +1,9 @@
 package TransformationHandelers
 
-import DataModels.{AsciiImage, PixelImage, StringCommandTemplate}
-import TransformationHandelers.Converters.{ConversionTable, ImageConverterInterface, LinearConverter, NonLinearConverter}
-import Filters.{BrightnessFilter, Filter, InvertFilter, ScaleFilter}
+import Commands.TransformCommands.TransformCommand
+import DataModels.{AsciiImage, PixelImage}
+import TransformationHandelers.Converters.{ConversionTable, ImageConverterInterface, LinearConverter}
+import Filters.Filter
 
 import scala.collection.mutable.ArrayBuffer
 
@@ -24,35 +25,16 @@ class TransformationHandeler {
   }
 
 
-  def execute(img : PixelImage, commands: ArrayBuffer[StringCommandTemplate]) : AsciiImage= {
-    var converter: ImageConverterInterface = new LinearConverter(table)
-
+  def execute(img : PixelImage, commands: ArrayBuffer[TransformCommand]) : AsciiImage= {
     //process every command
-    for(command : StringCommandTemplate <- commands){
-      command.name match {
-        case "--table-non-linear" => converter = new NonLinearConverter(table)
-        case "--table" => table.setPredifinedTable(command.value.toInt)
-        case "--custom-table" => table.setTable(command.value)
-        case "--invert" => filterArray.addOne(createFilter(command))
-        case "--brightness" => filterArray.addOne(createFilter(command))
-        case "--scale" => filterArray.addOne(createFilter(command))
-        case _ => throw IllegalArgumentException("Invalid filter or table name")
-      }
+    for(command : TransformCommand <- commands){
+      command.applyCommand(this)
     }
 
     for(filter : Filter <- filterArray){
       filter.applyFilter(img)
     }
 
-    return converter.convert(img)
-  }
-
-  private def createFilter(filter: StringCommandTemplate) : Filter = {
-    filter.name match {
-      case "--invert" => new InvertFilter()
-      case "--brightness" => new BrightnessFilter(filter.value.toInt)
-      case "--scale" => new ScaleFilter(filter.value.toFloat)
-      case _ => throw IllegalArgumentException("Invalid filter name")
-    }
+    return imgConverter.convert(img)
   }
 }

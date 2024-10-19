@@ -2,6 +2,7 @@ package Parser
 
 import Commands.LoaderCommands.{LoadGifImageCommand, LoadJpgImageCommand, LoadPngImageCommand, RandomImageCommand}
 import Commands.SaverCommands.{OutputConsoleCommand, OutputFileCommand}
+import Commands.TransformCommands.{BrightnessFilterCommand, InvertFilterCommand, NonLinearTableCommand, ScaleFilterCommand, SetCustomTableCommand, SetPredefinedTableCommand}
 import DataModels.CommandHolder
 import DataModels.StringCommandTemplate
 
@@ -47,7 +48,7 @@ class CommandParser {
       storeSaveCommand(command, commandHolder)
     }
     else{
-      commandHolder.transformCommands.addOne(command)
+      storeTransformCommand(command, commandHolder)
     }
   }
 
@@ -81,6 +82,42 @@ class CommandParser {
     }
     else {
       throw IllegalArgumentException("This --image command is not supported")
+    }
+  }
+
+  private def storeTransformCommand(command : StringCommandTemplate, commandHolder: CommandHolder): Unit = {
+    command.name match {
+      case "--table-non-linear" =>
+        commandHolder.transformCommands.addOne(new NonLinearTableCommand)
+      case "--table" =>
+        try{
+          val arg = command.value.toInt
+          commandHolder.transformCommands.addOne(new SetPredefinedTableCommand(arg))
+        }catch{
+          case _ : NumberFormatException =>
+            throw IllegalArgumentException("Predifined Tables are only named/numbered 0-1-2-3-4")
+        }
+      case "--custom-table" =>
+        commandHolder.transformCommands.addOne(new SetCustomTableCommand(command.value))
+      case "--invert" =>
+        commandHolder.transformCommands.addOne(new InvertFilterCommand)
+      case "--brightness" =>
+        try{
+          val arg = command.value.toInt
+          commandHolder.transformCommands.addOne(new BrightnessFilterCommand(arg))
+        }catch{
+          case _ : NumberFormatException =>
+            throw IllegalArgumentException("Brightness filter arguments can be only numbers")
+        }
+      case "--scale" =>
+        try{
+          val arg = command.value.toFloat
+          commandHolder.transformCommands.addOne(new ScaleFilterCommand(arg))
+        }catch{
+          case _ : NumberFormatException =>
+            throw IllegalArgumentException("Scale filter arguments can be only float numbers")
+        }
+      case _ => throw IllegalArgumentException("Invalid filter or table name")
     }
   }
 

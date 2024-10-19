@@ -2,8 +2,8 @@ package TransformationHandelers.Converters
 
 import DataModels.{AsciiImage, PixelImage}
 
-trait ImageConverterInterface{
-  val conversionTable: ConversionTable
+trait ImageConverterInterface(val conversionTable: ConversionTable){
+
   def convert(img : PixelImage) : AsciiImage = {
     var res = new AsciiImage(img.width, img.height)
     var x = 0
