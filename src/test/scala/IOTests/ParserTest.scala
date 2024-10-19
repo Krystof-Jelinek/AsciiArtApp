@@ -49,7 +49,12 @@ class ParserTest extends AnyFunSuite{
     assert(res.saveCommands.nonEmpty)
     assert(res.transformCommands.isEmpty)
 
-    assert(res.saveCommands(0).isInstanceOf[OutputFileCommand])
+    res.saveCommands(0) match {
+      case outputFileCommand: OutputFileCommand =>
+        assert(outputFileCommand.filepath == "Path/to/some/file")
+      case _ =>
+        fail("Expected OutputFileCommand, but got something else")
+    }
     assert(res.saveCommands(1).isInstanceOf[OutputConsoleCommand])
   }
 
@@ -60,7 +65,12 @@ class ParserTest extends AnyFunSuite{
     assert(res.saveCommands.nonEmpty)
     assert(res.transformCommands.isEmpty)
 
-    assert(res.saveCommands(0).isInstanceOf[OutputFileCommand])
+    res.saveCommands(0) match {
+      case outputFileCommand: OutputFileCommand =>
+        assert(outputFileCommand.filepath == "Path/to/some/file")
+      case _ =>
+        fail("Expected OutputFileCommand, but got something else")
+    }
     assert(res.saveCommands(1).isInstanceOf[OutputConsoleCommand])
 
     var res2 = parser.parse(Seq[String]("--rotate", "+90", "--invert", "--scale", "0.25", "--random-new-command", "with some value", " + more value"))
