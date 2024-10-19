@@ -2,7 +2,7 @@ package IOTests
 
 import Commands.LoaderCommands.{LoadPngImageCommand, RandomImageCommand}
 import Commands.SaverCommands.{OutputConsoleCommand, OutputFileCommand}
-import DataModels.Command
+import DataModels.StringCommandTemplate
 import Parser.CommandParser
 import org.scalatest.funsuite.AnyFunSuite
 
@@ -49,10 +49,10 @@ class ParserTest extends AnyFunSuite{
     assert(res.saveCommands.isEmpty)
     assert(res.transformCommands.nonEmpty)
 
-    assert(res.transformCommands(0).equals(Command("--rotate", "+90")))
-    assert(res.transformCommands(1).equals(Command("--invert", "")))
-    assert(res.transformCommands(2).equals(Command("--scale", "0.25")))
-    assert(res.transformCommands(3).equals(Command("--random-new-command", "with some value + more value")))
+    assert(res.transformCommands(0).equals(StringCommandTemplate("--rotate", "+90")))
+    assert(res.transformCommands(1).equals(StringCommandTemplate("--invert", "")))
+    assert(res.transformCommands(2).equals(StringCommandTemplate("--scale", "0.25")))
+    assert(res.transformCommands(3).equals(StringCommandTemplate("--random-new-command", "with some value + more value")))
   }
 
   test("save parsing test") {
@@ -95,10 +95,10 @@ class ParserTest extends AnyFunSuite{
     assert(res2.saveCommands.isEmpty)
     assert(res2.transformCommands.nonEmpty)
 
-    assert(res2.transformCommands(0).equals(Command("--rotate", "+90")))
-    assert(res2.transformCommands(1).equals(Command("--invert", "")))
-    assert(res2.transformCommands(2).equals(Command("--scale", "0.25")))
-    assert(res2.transformCommands(3).equals(Command("--random-new-command", "with some value + more value")))
+    assert(res2.transformCommands(0).equals(StringCommandTemplate("--rotate", "+90")))
+    assert(res2.transformCommands(1).equals(StringCommandTemplate("--invert", "")))
+    assert(res2.transformCommands(2).equals(StringCommandTemplate("--scale", "0.25")))
+    assert(res2.transformCommands(3).equals(StringCommandTemplate("--random-new-command", "with some value + more value")))
 
     val res3 = parser.parse(Seq[String]("--image", "Some/Path/somewhere/file.png"))
     res3.loadCommand match {

@@ -2,7 +2,6 @@ package ImageSaver
 
 import Commands.SaverCommands.SaveCommand
 import DataModels.AsciiImage
-import DataModels.Command
 import ExceptionHandeler.LogicException
 
 import scala.collection.mutable.ArrayBuffer

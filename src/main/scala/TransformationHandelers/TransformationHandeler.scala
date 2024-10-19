@@ -1,6 +1,6 @@
 package TransformationHandelers
 
-import DataModels.{AsciiImage, Command, PixelImage}
+import DataModels.{AsciiImage, PixelImage, StringCommandTemplate}
 import TransformationHandelers.Converters.{ConversionTable, ImageConverterInterface, LinearConverter, NonLinearConverter}
 import Filters.{BrightnessFilter, Filter, InvertFilter, ScaleFilter}
 
@@ -24,11 +24,11 @@ class TransformationHandeler {
   }
 
 
-  def execute(img : PixelImage, commands: ArrayBuffer[Command]) : AsciiImage= {
+  def execute(img : PixelImage, commands: ArrayBuffer[StringCommandTemplate]) : AsciiImage= {
     var converter: ImageConverterInterface = new LinearConverter(table)
 
     //process every command
-    for(command : Command <- commands){
+    for(command : StringCommandTemplate <- commands){
       command.name match {
         case "--table-non-linear" => converter = new NonLinearConverter(table)
         case "--table" => table.setPredifinedTable(command.value.toInt)
@@ -47,7 +47,7 @@ class TransformationHandeler {
     return converter.convert(img)
   }
 
-  private def createFilter(filter: Command) : Filter = {
+  private def createFilter(filter: StringCommandTemplate) : Filter = {
     filter.name match {
       case "--invert" => new InvertFilter()
       case "--brightness" => new BrightnessFilter(filter.value.toInt)

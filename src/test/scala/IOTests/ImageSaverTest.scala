@@ -1,7 +1,7 @@
 package IOTests
 
 import Commands.SaverCommands.{OutputConsoleCommand, OutputFileCommand, SaveCommand}
-import DataModels.{AsciiImage, Command}
+import DataModels.AsciiImage
 import ImageSaver.ImageSaver
 import org.scalatest.funsuite.AnyFunSuite
 

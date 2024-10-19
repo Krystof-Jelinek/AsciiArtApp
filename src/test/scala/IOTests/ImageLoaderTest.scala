@@ -1,7 +1,7 @@
 package IOTests
 
 import Commands.LoaderCommands.{LoadGifImageCommand, LoadJpgImageCommand, LoadPngImageCommand, RandomImageCommand}
-import DataModels.{Command, Pixel}
+import DataModels.Pixel
 import ImageLoader.ImageLoader
 import Parser.CommandParser
 import org.scalatest.funsuite.AnyFunSuite

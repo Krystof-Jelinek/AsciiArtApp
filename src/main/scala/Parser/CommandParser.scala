@@ -3,7 +3,7 @@ package Parser
 import Commands.LoaderCommands.{LoadGifImageCommand, LoadJpgImageCommand, LoadPngImageCommand, RandomImageCommand}
 import Commands.SaverCommands.{OutputConsoleCommand, OutputFileCommand}
 import DataModels.CommandHolder
-import DataModels.Command
+import DataModels.StringCommandTemplate
 
 class CommandParser {
   private var sourceBool : Boolean = false
@@ -23,7 +23,7 @@ class CommandParser {
           cmdValue += commands(i)
           i += 1
         }
-        val in = Command(cmdName, cmdValue)
+        val in = StringCommandTemplate(cmdName, cmdValue)
         storeCommand(in, commandHolder)
         cmdValue = ""
         cmdName = ""
@@ -35,7 +35,7 @@ class CommandParser {
     return commandHolder
   }
 
-  private def storeCommand(command: Command, commandHolder: CommandHolder): Unit = {
+  private def storeCommand(command: StringCommandTemplate, commandHolder: CommandHolder): Unit = {
     if(command.name.startsWith("--image")){
       if(sourceBool){
         throw IllegalArgumentException("Only one --image* argument cant be specified")
@@ -51,7 +51,7 @@ class CommandParser {
     }
   }
 
-  private def storeSaveCommand(command: Command, commandHolder: CommandHolder) : Unit = {
+  private def storeSaveCommand(command: StringCommandTemplate, commandHolder: CommandHolder) : Unit = {
     if(command.name == "--output-console"){
       commandHolder.saveCommands.addOne(new OutputConsoleCommand)
     }
@@ -63,7 +63,7 @@ class CommandParser {
     }
   }
 
-  private def storeLoadCommand(command : Command, commandHolder: CommandHolder) : Unit = {
+  private def storeLoadCommand(command : StringCommandTemplate, commandHolder: CommandHolder) : Unit = {
     if (command.name == "--image-random") {
       commandHolder.loadCommand = RandomImageCommand(command.value)
     }
