@@ -1,5 +1,6 @@
 package Parser
 
+import Commands.LoaderCommands.{LoadGifImageCommand, LoadJpgImageCommand, LoadPngImageCommand, RandomImageCommand}
 import Commands.SaverCommands.{OutputConsoleCommand, OutputFileCommand}
 import DataModels.CommandHolder
 import DataModels.Command
@@ -28,6 +29,9 @@ class CommandParser {
         cmdName = ""
       }
     }
+    if(!sourceBool){
+      println("Exactly one --image command with source should be specified! but we are kind and generated random image for you")
+    }
     return commandHolder
   }
 
@@ -36,7 +40,7 @@ class CommandParser {
       if(sourceBool){
         throw IllegalArgumentException("Only one --image* argument cant be specified")
       }
-      commandHolder.loadCommand = command
+      storeLoadCommand(command, commandHolder)
       sourceBool = true
     }
     else if (command.name.startsWith("--output")) {
@@ -56,6 +60,27 @@ class CommandParser {
     }
     else{
       throw IllegalArgumentException("This --output command is not supported")
+    }
+  }
+
+  private def storeLoadCommand(command : Command, commandHolder: CommandHolder) : Unit = {
+    if (command.name == "--image-random") {
+      commandHolder.loadCommand = RandomImageCommand(command.value)
+    }
+    else if (command.name == "--image") {
+      command.value match {
+        case filename if filename.endsWith(".png") =>
+          commandHolder.loadCommand = LoadPngImageCommand(command.value)
+        case filename if filename.endsWith(".jpg") =>
+          commandHolder.loadCommand = LoadJpgImageCommand(command.value)
+        case filename if filename.endsWith(".gif") =>
+          commandHolder.loadCommand = LoadGifImageCommand(command.value)
+        case _ =>
+          throw IllegalArgumentException("this filetype is not supported")
+      }
+    }
+    else {
+      throw IllegalArgumentException("This --image command is not supported")
     }
   }
 
