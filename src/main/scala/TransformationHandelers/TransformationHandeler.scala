@@ -1,6 +1,6 @@
 package TransformationHandelers
 
-import DataModels.{AsciiImage, Command, Image}
+import DataModels.{AsciiImage, Command, Image, PixelImage}
 import TransformationHandelers.Converters.{ConversionTable, ImageConverterInterface, LinearConverter, NonLinearConverter}
 import Filters.{BrightnessFilter, Filter, InvertFilter, ScaleFilter}
 
@@ -8,7 +8,7 @@ import scala.collection.mutable.ArrayBuffer
 
 class TransformationHandeler {
   var table = new ConversionTable
-  def execute(img : Image, commands: ArrayBuffer[Command]) : AsciiImage= {
+  def execute(img : PixelImage, commands: ArrayBuffer[Command]) : AsciiImage= {
     var converter: ImageConverterInterface = new LinearConverter(table)
     val filterArray = ArrayBuffer.empty[Filter]
 

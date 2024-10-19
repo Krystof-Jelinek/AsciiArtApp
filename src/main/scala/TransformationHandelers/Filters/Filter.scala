@@ -1,7 +1,7 @@
 package TransformationHandelers.Filters
 
-import DataModels.Image
+import DataModels.{Image, PixelImage}
 
 abstract class Filter {
- def applyFilter(img : Image) : Unit
+ def applyFilter(img : PixelImage) : Unit
 }

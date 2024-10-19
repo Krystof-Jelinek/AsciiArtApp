@@ -1,8 +1,8 @@
 package TransformationHandelers.Filters
-import DataModels.Image
+import DataModels.{Image, PixelImage}
 
 class ScaleFilter(val size : Float) extends Filter {
-  override def applyFilter(img: Image): Unit = {
+  override def applyFilter(img: PixelImage): Unit = {
     if(size.toInt == 1){
       return
     }
@@ -17,7 +17,7 @@ class ScaleFilter(val size : Float) extends Filter {
     }
   }
 
-  private def enlarge(img: Image): Unit = {
+  private def enlarge(img: PixelImage): Unit = {
     img.resize(img.width*2, img.height*2)
 
     //backward indexes:
@@ -29,11 +29,11 @@ class ScaleFilter(val size : Float) extends Filter {
 
     while (y >= 0) {
       while (x >= 0) {
-        img.setPixel(backX, backY, img.getPixel(x,y).get)
-        img.setPixel(backX, backY - 1, img.getPixel(x,y).get)
+        img.setVal(backX, backY, img.getVal(x,y).get)
+        img.setVal(backX, backY - 1, img.getVal(x,y).get)
         backX -= 1
-        img.setPixel(backX, backY, img.getPixel(x,y).get)
-        img.setPixel(backX, backY - 1, img.getPixel(x,y).get)
+        img.setVal(backX, backY, img.getVal(x,y).get)
+        img.setVal(backX, backY - 1, img.getVal(x,y).get)
         backX -= 1
         x -= 1
       }
@@ -45,7 +45,7 @@ class ScaleFilter(val size : Float) extends Filter {
     }
   }
 
-  private def shrink(img: Image) : Unit = {
+  private def shrink(img: PixelImage) : Unit = {
     if(img.width == 1 || img.height == 1){
       throw IllegalArgumentException("This image cant be shrinked anymore its dimensions are too small already")
     }
@@ -70,7 +70,7 @@ class ScaleFilter(val size : Float) extends Filter {
 
     while (getY < img.height) {
       while (getX < img.width) {
-        img.setPixel(writeX, writeY, img.getPixel(getX, getY).get)
+        img.setVal(writeX, writeY, img.getVal(getX, getY).get)
         writeX += 1
         getX += 2
       }

@@ -17,7 +17,7 @@ class ImageSaver {
         imgSaver.saveImage(img)
       }
       else{
-        throw IllegalArgumentException("This output command is not supported")
+        throw IllegalArgumentException("This output command is not supported: " + cmd.name)
       }
     }
   }

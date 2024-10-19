@@ -1,7 +1,7 @@
 package ImageLoader
 
-import DataModels.Image
+import DataModels.PixelImage
 
 trait ImageLoaderInterface {
-  def loadImage() : Image
+  def loadImage() : PixelImage
 }

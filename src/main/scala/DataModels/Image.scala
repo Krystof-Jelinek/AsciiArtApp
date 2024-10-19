@@ -1,51 +1,49 @@
 package DataModels
 
 import scala.collection.mutable.ArrayBuffer
+import scala.reflect.ClassTag
 
-class Image(var width: Int, var height: Int) {
-  require(width > 0 && width <= 2048, "Width must be between 1 and 2048")
-  require(height > 0 && height <= 1080, "Height must be between 1 and 1080")
+abstract class Image[T : ClassTag](var width: Int, var height: Int, defaultValue : T) {
+  require(width > 0 && width <= 2048, "Width of Image must be between 1 and 2048")
+  require(height > 0 && height <= 1080, "Height of Image must be between 1 and 1080")
 
-  private val pixels: ArrayBuffer[ArrayBuffer[Pixel]] = ArrayBuffer.fill(width, height)(Pixel(0, 0, 0))
-
-  def getPixel(x: Int, y: Int): Option[Pixel] = {
+  protected val vals: ArrayBuffer[ArrayBuffer[T]] = ArrayBuffer.fill(width)(
+    ArrayBuffer.fill(height)(defaultValue)
+  )
+  def getVal(x: Int, y: Int): Option[T] = {
     if (x >= 0 && x < width && y >= 0 && y < height) {
-      return Some(pixels(x)(y))
+      return Some(vals(x)(y))
     } else {
       return None
     }
   }
 
-  def setPixel(x: Int, y: Int, pixel: Pixel): Unit = {
+  def setVal(x: Int, y: Int, in: T): Unit = {
     if (x >= 0 && x < width && y >= 0 && y < height) {
-      pixels(x)(y) = Pixel(pixel.red, pixel.green, pixel.blue)
+      vals(x)(y) = in
     } else {
-      throw new IllegalArgumentException("Coordinates are out of bounds.")
+      throw new IllegalArgumentException("Coordinates in Image are out of bounds.")
     }
   }
 
-  //deletes the above pixels or adds white new ones
-  def resize(x : Int, y : Int) : Unit = {
-    require(x > 0 && x <= 2048, "Width must be between 1 and 2048")
-    require(y > 0 && y <= 1080, "Height must be between 1 and 1080")
+  def resize(x: Int, y: Int): Unit = {
+    require(x > 0 && x <= 2048, "Width of Image must be between 1 and 2048")
+    require(y > 0 && y <= 1080, "Height of Image must be between 1 and 1080")
     width = x
     height = y
     //shrinking if needed
-    pixels.dropRightInPlace(pixels.length - width)
-    for(column <- pixels){
+    vals.dropRightInPlace(vals.length - width)
+    for (column <- vals) {
       column.dropRightInPlace(column.length - height)
     }
     //expanding if needed
-    while(height - pixels(0).length > 0){
-      for(column <- pixels){
-        column.addOne(Pixel(0,0,0))
+    while (height - vals(0).length > 0) {
+      for (column <- vals) {
+        column.addOne(defaultValue)
       }
     }
-    while(width - pixels.length > 0){
-      pixels.addOne(ArrayBuffer.fill(height)(Pixel(0,0,0)))
+    while (width - vals.length > 0) {
+      vals.addOne(ArrayBuffer.fill(height)(defaultValue))
     }
-  }
-  def testInternalSize(x : Int, y : Int): Unit = {
-    val t = pixels(x)(y)
   }
 }

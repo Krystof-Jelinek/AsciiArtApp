@@ -1,11 +1,11 @@
 package ImageLoader
 
-import DataModels.{Command, Image}
+import DataModels.{Command, Image, PixelImage}
 
 import java.io.{File, FileNotFoundException}
 
 class ImageLoader {
-  def loadImage(loadCommand : Command): Image = {
+  def loadImage(loadCommand : Command): PixelImage = {
     if(loadCommand.name == "--image-random"){
       val loader: ImageLoaderInterface = new RandomImageLoader(loadCommand.value)
       return loader.loadImage()
