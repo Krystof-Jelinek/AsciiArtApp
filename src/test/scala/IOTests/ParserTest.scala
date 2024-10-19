@@ -1,5 +1,6 @@
 package IOTests
 
+import Commands.SaverCommands.{OutputConsoleCommand, OutputFileCommand}
 import DataModels.Command
 import Parser.CommandParser
 import org.scalatest.funsuite.AnyFunSuite
@@ -48,8 +49,8 @@ class ParserTest extends AnyFunSuite{
     assert(res.saveCommands.nonEmpty)
     assert(res.transformCommands.isEmpty)
 
-    assert(res.saveCommands(0) == Command("--output-file", "Path/to/some/file"))
-    assert(res.saveCommands(1) == Command("--output-console", ""))
+    assert(res.saveCommands(0).isInstanceOf[OutputFileCommand])
+    assert(res.saveCommands(1).isInstanceOf[OutputConsoleCommand])
   }
 
   test("One Parser parses multiple commands"){
@@ -59,8 +60,8 @@ class ParserTest extends AnyFunSuite{
     assert(res.saveCommands.nonEmpty)
     assert(res.transformCommands.isEmpty)
 
-    assert(res.saveCommands(0) == Command("--output-file", "Path/to/some/file"))
-    assert(res.saveCommands(1) == Command("--output-console", ""))
+    assert(res.saveCommands(0).isInstanceOf[OutputFileCommand])
+    assert(res.saveCommands(1).isInstanceOf[OutputConsoleCommand])
 
     var res2 = parser.parse(Seq[String]("--rotate", "+90", "--invert", "--scale", "0.25", "--random-new-command", "with some value", " + more value"))
     assert(res2.loadCommand.name == "")

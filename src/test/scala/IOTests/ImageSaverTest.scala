@@ -1,5 +1,6 @@
 package IOTests
 
+import Commands.SaverCommands.{OutputConsoleCommand, OutputFileCommand, SaveCommand}
 import DataModels.{AsciiImage, Command}
 import ImageSaver.ImageSaver
 import org.scalatest.funsuite.AnyFunSuite
@@ -33,13 +34,13 @@ class ImageSaverTest extends AnyFunSuite{
     val outputStream = new ByteArrayOutputStream()
     Console.withOut(outputStream) {
     //this test if user puth argument after --output-console it should just ignore the argument
-      saver.saveImage(asciiImage, ArrayBuffer[Command](Command("--output-console", path)))
+      saver.saveImage(asciiImage, ArrayBuffer[SaveCommand](new OutputConsoleCommand()))
     }
 
 
     assert(!Files.exists(Paths.get(path)))
 
-    saver.saveImage(asciiImage, ArrayBuffer[Command](Command("--output-file", path)))
+    saver.saveImage(asciiImage, ArrayBuffer[SaveCommand](OutputFileCommand(path)))
 
     assert(Files.exists(Paths.get(path)))
 
@@ -69,9 +70,6 @@ class ImageSaverTest extends AnyFunSuite{
     asciiImage.setVal(3, 2, '@')
     val path = "src/test/testPictures/result.txt"
 
-    assertThrows[IllegalArgumentException]{
-      saver.saveImage(asciiImage, ArrayBuffer[Command](Command("--some-wierd-command",path)))
-    }
     assert(!Files.exists(Paths.get(path)))
   }
 

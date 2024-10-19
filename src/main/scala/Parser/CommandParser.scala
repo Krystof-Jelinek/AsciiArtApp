@@ -1,5 +1,6 @@
 package Parser
 
+import Commands.SaverCommands.{OutputConsoleCommand, OutputFileCommand}
 import DataModels.CommandHolder
 import DataModels.Command
 
@@ -39,10 +40,22 @@ class CommandParser {
       sourceBool = true
     }
     else if (command.name.startsWith("--output")) {
-      commandHolder.saveCommands.addOne(command)
+      storeSaveCommand(command, commandHolder)
     }
     else{
       commandHolder.transformCommands.addOne(command)
+    }
+  }
+
+  private def storeSaveCommand(command: Command, commandHolder: CommandHolder) : Unit = {
+    if(command.name == "--output-console"){
+      commandHolder.saveCommands.addOne(new OutputConsoleCommand)
+    }
+    else if (command.name == "--output-file"){
+      commandHolder.saveCommands.addOne(new OutputFileCommand(command.value))
+    }
+    else{
+      throw IllegalArgumentException("This --output command is not supported")
     }
   }
 

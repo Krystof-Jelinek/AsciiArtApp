@@ -1,7 +1,9 @@
 package ImageSaver
 
+import Commands.SaverCommands.SaveCommand
 import DataModels.AsciiImage
 import DataModels.Command
+import ExceptionHandeler.LogicException
 
 import scala.collection.mutable.ArrayBuffer
 
@@ -17,18 +19,14 @@ class ImageSaver {
     filePath = Some(in)
   }
 
-  def saveImage(img : AsciiImage, commands: ArrayBuffer[Command]) : Unit = {
+  def saveImage(img : AsciiImage, commands: ArrayBuffer[SaveCommand]) : Unit = {
     for(cmd <- commands){
-      if(cmd.name == "--output-console"){
-        val imgSaver : ImageSaverInterface = new PrintSaver
-        imgSaver.saveImage(img)
-      }
-      else if (cmd.name == "--output-file") {
-        val imgSaver: ImageSaverInterface = new FileSaver(cmd.value)
-        imgSaver.saveImage(img)
+      cmd.applyCommand(this)
+      if(imgSaver.isDefined){
+        imgSaver.get.saveImage(img)
       }
       else{
-        throw IllegalArgumentException("This output command is not supported: " + cmd.name)
+        throw LogicException("Error while saving images this should be logically impossible contact your codemonkey")
       }
     }
   }
