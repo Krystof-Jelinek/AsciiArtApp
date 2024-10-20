@@ -8,14 +8,9 @@ import scala.collection.mutable.ArrayBuffer
 
 class ImageSaver {
   private var imgSaver : Option[ImageSaverInterface] = None
-  private var filePath : Option[String] = None
 
   def setImgSaverInterface(in : ImageSaverInterface): Unit = {
     imgSaver = Some(in)
-  }
-
-  def setFilePath(in: String): Unit = {
-    filePath = Some(in)
   }
 
   def saveImage(img : AsciiImage, commands: ArrayBuffer[SaveCommand]) : Unit = {
@@ -25,7 +20,7 @@ class ImageSaver {
         imgSaver.get.saveImage(img)
       }
       else{
-        throw LogicException("Error while saving images this should be logically impossible contact your codemonkey")
+        throw LogicException("Error while saving images this should be logically impossible contact your god")
       }
     }
   }
