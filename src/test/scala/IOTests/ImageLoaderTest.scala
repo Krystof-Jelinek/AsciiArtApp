@@ -1,6 +1,6 @@
 package IOTests
 
-import Commands.LoaderCommands.{LoadGifImageCommand, LoadJpgImageCommand, LoadPngImageCommand, RandomImageCommand}
+import Commands.LoaderCommands.{LoadGifImageCommand, LoadJpgImageCommand, LoadPngImageCommand, LoadRandomImageCommand}
 import DataModels.Pixel
 import ImageLoader.ImageLoader
 import Parser.CommandParser
@@ -24,11 +24,11 @@ class ImageLoaderTest extends AnyFunSuite{
     val image3 = loader.loadImage(command3)
     assert(image3.getVal(0, 0).get == Pixel(213, 213, 213))
 
-    val command4 = RandomImageCommand("rngSeed")
+    val command4 = LoadRandomImageCommand("rngSeed")
     val image4 = loader.loadImage(command4)
     assert(image4.getVal(0, 0).get == Pixel(163,97,144))
 
-    val command5 = RandomImageCommand("")
+    val command5 = LoadRandomImageCommand("")
     val image5 = loader.loadImage(command5)
 
   }

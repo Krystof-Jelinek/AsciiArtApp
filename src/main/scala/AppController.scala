@@ -12,7 +12,7 @@ class AppController {
       val cmdHolder = parser.parse(args)
 
       val imageLoader = new ImageLoader()
-      var image = imageLoader.loadImage(cmdHolder.loadCommand)
+      val image = imageLoader.loadImage(cmdHolder.loadCommand)
 
       val transformationHandeler = new TransformationHandeler
       val asciiImage: AsciiImage = transformationHandeler.execute(image, cmdHolder.transformCommands)
@@ -21,10 +21,9 @@ class AppController {
       imageSaver.saveImage(asciiImage, cmdHolder.saveCommands)
     }
     catch {
-      case e: Exception => {
+      case e: Exception =>
         val exceptionHandeler: ExceptionHandeler = StdOutExceptionHandeler()
         exceptionHandeler.handle(e)
-      }
     }
   }
 }

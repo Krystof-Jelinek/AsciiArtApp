@@ -1,9 +1,9 @@
 package IOTests
 
-import Commands.LoaderCommands.{LoadPngImageCommand, RandomImageCommand}
+import Commands.LoaderCommands.{LoadPngImageCommand, LoadRandomImageCommand}
 import Commands.SaverCommands.{OutputConsoleCommand, OutputFileCommand}
+import Commands.StringCommandTemplate
 import Commands.TransformCommands.{BrightnessFilterCommand, InvertFilterCommand, ScaleFilterCommand}
-import DataModels.StringCommandTemplate
 import Parser.CommandParser
 import org.scalatest.funsuite.AnyFunSuite
 
@@ -22,9 +22,9 @@ class ParserTest extends AnyFunSuite{
 
     val res2 = parser.parse(Seq[String]("--image-random"))
     res2.loadCommand match {
-      case loadCmd: RandomImageCommand =>
+      case loadCmd: LoadRandomImageCommand =>
       case _ =>
-        fail("Expected RandomImageCommand, but got something else")
+        fail("Expected LoadRandomImageCommand, but got something else")
     }
     assert(res2.saveCommands.isEmpty)
     assert(res2.transformCommands.isEmpty)
@@ -42,10 +42,10 @@ class ParserTest extends AnyFunSuite{
     val parser = new CommandParser()
     var res = parser.parse(Seq[String]("--invert", "--scale", "0.25", "--brightness", "20"))
     res.loadCommand match {
-      case loadCmd: RandomImageCommand =>
+      case loadCmd: LoadRandomImageCommand =>
         assert(loadCmd.seed == "")
       case _ =>
-        fail("Expected RandomImageCommand, but got something else")
+        fail("Expected LoadRandomImageCommand, but got something else")
     }
     assert(res.saveCommands.isEmpty)
     assert(res.transformCommands.nonEmpty)
@@ -97,10 +97,10 @@ class ParserTest extends AnyFunSuite{
 
     var res2 = parser.parse(Seq[String]("--invert", "--scale", "0.25", "--brightness", "20"))
     res.loadCommand match {
-      case loadCmd: RandomImageCommand =>
+      case loadCmd: LoadRandomImageCommand =>
         assert(loadCmd.seed == "")
       case _ =>
-        fail("Expected RandomImageCommand, but got something else")
+        fail("Expected LoadRandomImageCommand, but got something else")
     }
     assert(res2.saveCommands.isEmpty)
     assert(res2.transformCommands.nonEmpty)
@@ -131,10 +131,10 @@ class ParserTest extends AnyFunSuite{
 
     val res4 = parser.parse(Seq[String]("--image-random"))
     res4.loadCommand match {
-      case loadCmd: RandomImageCommand =>
+      case loadCmd: LoadRandomImageCommand =>
         assert(loadCmd.seed == "")
       case _ =>
-        fail("Expected RandomImageCommand, but got something else")
+        fail("Expected LoadRandomImageCommand, but got something else")
     }
     assert(res4.saveCommands.isEmpty)
     assert(res4.transformCommands.isEmpty)

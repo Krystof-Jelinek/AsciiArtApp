@@ -1,10 +1,9 @@
 package Parser
 
-import Commands.LoaderCommands.{LoadGifImageCommand, LoadJpgImageCommand, LoadPngImageCommand, RandomImageCommand}
+import Commands.{CommandHolder, StringCommandTemplate}
+import Commands.LoaderCommands.{LoadGifImageCommand, LoadJpgImageCommand, LoadPngImageCommand, LoadRandomImageCommand}
 import Commands.SaverCommands.{OutputConsoleCommand, OutputFileCommand}
 import Commands.TransformCommands.{BrightnessFilterCommand, InvertFilterCommand, NonLinearTableCommand, ScaleFilterCommand, SetCustomTableCommand, SetPredefinedTableCommand}
-import DataModels.CommandHolder
-import DataModels.StringCommandTemplate
 
 class CommandParser {
   private var sourceBool : Boolean = false
@@ -66,7 +65,7 @@ class CommandParser {
 
   private def storeLoadCommand(command : StringCommandTemplate, commandHolder: CommandHolder) : Unit = {
     if (command.name == "--image-random") {
-      commandHolder.loadCommand = RandomImageCommand(command.value)
+      commandHolder.loadCommand = LoadRandomImageCommand(command.value)
     }
     else if (command.name == "--image") {
       command.value match {
