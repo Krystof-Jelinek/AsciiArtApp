@@ -37,7 +37,6 @@ class ImageSaverTest extends AnyFunSuite{
       saver.saveImage(asciiImage, ArrayBuffer[SaveCommand](new OutputConsoleCommand()))
     }
 
-
     assert(!Files.exists(Paths.get(path)))
 
     saver.saveImage(asciiImage, ArrayBuffer[SaveCommand](OutputFileCommand(path)))
@@ -52,7 +51,7 @@ class ImageSaverTest extends AnyFunSuite{
     Files.deleteIfExists(Paths.get(path))
   }
 
-  test("Invalid command throws error"){
+  test("No command doesnt save file"){
     val saver = new ImageSaver
     val asciiImage = AsciiImage(4,3)
     //Test\nNext\n@@@@\n
@@ -69,6 +68,8 @@ class ImageSaverTest extends AnyFunSuite{
     asciiImage.setVal(2, 2, '@')
     asciiImage.setVal(3, 2, '@')
     val path = "src/test/testPictures/result.txt"
+
+    saver.saveImage(asciiImage, ArrayBuffer.empty[SaveCommand])
 
     assert(!Files.exists(Paths.get(path)))
   }

@@ -15,7 +15,38 @@ class InvertFilterTest extends AnyFunSuite{
     assert(img.getVal(0, 0).get == Pixel(246, 246, 246))
   }
 
-  test("larger image test") {
+  test("255 edge value test"){
+    var filter = new InvertFilter()
+    var img = new PixelImage(1, 1)
+    img.setVal(0, 0, Pixel(255, 255, 255))
+
+    filter.applyFilter(img)
+
+    assert(img.getVal(0, 0).get == Pixel(0, 0, 0))
+  }
+
+  test("0 edge value test") {
+    var filter = new InvertFilter()
+    var img = new PixelImage(1, 1)
+    img.setVal(0, 0, Pixel(0, 0, 0))
+
+    filter.applyFilter(img)
+
+    assert(img.getVal(0, 0).get == Pixel(255, 255, 255))
+  }
+
+  test("apply invert twice should return same value") {
+    var filter = new InvertFilter()
+    var img = new PixelImage(1, 1)
+    img.setVal(0, 0, Pixel(0, 0, 0))
+
+    filter.applyFilter(img)
+    filter.applyFilter(img)
+
+    assert(img.getVal(0, 0).get == Pixel(0, 0, 0))
+  }
+
+  test("larger image test with edge values") {
     var filter = new InvertFilter()
     var img = new PixelImage(3, 3)
     img.setVal(0, 0, Pixel(10, 10, 10))
