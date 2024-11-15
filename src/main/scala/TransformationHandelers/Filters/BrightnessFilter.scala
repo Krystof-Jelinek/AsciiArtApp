@@ -10,7 +10,8 @@ class BrightnessFilter(val intensity : Int) extends Filter {
       while (x < img.width) {
         val pxl: Pixel = img.getVal(x, y).get
         val newBrightnes = getBrightness(intensity, pxl)
-        // this technically invalids the color but thats not a problem since we dont care about colors
+        // this technically invalids the colors of the picture but thats not a problem since we dont care about colors
+        // the greyscale value will be calculated corectly since the indexes add up to 1
         img.setVal(x, y, Pixel(newBrightnes, newBrightnes, newBrightnes))
         x += 1
       }

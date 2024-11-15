@@ -1,7 +1,6 @@
 package TransformationHandelers.Converters
-import DataModels.{AsciiImage, Image}
 
-class NonLinearConverter(conversionTable: ConversionTable) extends ImageConverterInterface(conversionTable){
+class NonLinearConverter(conversionTable: ConversionTable) extends TableBasedImageConverter(conversionTable){
 
   override def getTableIndex(greyscaleVal: Int): Int = {
     val range: Double = 54.toDouble / (conversionTable.length() - 2).toDouble

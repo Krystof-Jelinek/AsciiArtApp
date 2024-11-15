@@ -1,6 +1,4 @@
 package ImageLoader
 
-import DataModels.Image
-
-class JpgLoader(path : String) extends StandartFormatImageLoader(path) {
+class JpgLoader(path : String) extends IOFormatImageLoader(path) {
 }

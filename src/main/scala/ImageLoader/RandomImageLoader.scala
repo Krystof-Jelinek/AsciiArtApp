@@ -1,5 +1,5 @@
 package ImageLoader
-import DataModels.{Image, Pixel, PixelImage}
+import DataModels.{Pixel, PixelImage}
 
 import scala.util.Random
 

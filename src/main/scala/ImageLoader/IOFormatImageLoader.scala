@@ -1,12 +1,12 @@
 package ImageLoader
 
-import DataModels.{Image, Pixel, PixelImage}
+import DataModels.{Pixel, PixelImage}
 
 import java.awt.image.BufferedImage
 import java.io.File
 import javax.imageio.ImageIO
 
-class StandartFormatImageLoader(path : String) extends ImageLoaderInterface {
+class IOFormatImageLoader(path : String) extends ImageLoaderInterface {
   override def loadImage(): PixelImage = {
 
     val bufferedImage: BufferedImage = ImageIO.read(new File(path))

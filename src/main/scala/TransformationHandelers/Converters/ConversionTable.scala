@@ -2,7 +2,6 @@ package TransformationHandelers.Converters
 
 import scala.collection.mutable.ArrayBuffer
 import scala.io.Source
-import scala.util.Using
 
 class ConversionTable {
   private val charTable: ArrayBuffer[Char] = ArrayBuffer[Char]('$','@','B','%','8','&','W','M','#','*','o','a','h'
@@ -34,13 +33,9 @@ class ConversionTable {
     val lines = src.getLines().toArray
     src.close()
 
-    // Set the table based on the retrieved line
     val line = lines(index)
 
-    // Assuming you have a method called `setTable` that takes a line to set the table
     setTable(line)
-
-
   }
 
   def apply (index: Int): Char = {

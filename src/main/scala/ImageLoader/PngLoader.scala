@@ -1,11 +1,3 @@
 package ImageLoader
-
-import DataModels.{Image, Pixel}
-import ImageLoader.ImageLoaderInterface
-
-import java.awt.image.BufferedImage
-import java.io.{File, FileNotFoundException}
-import javax.imageio.ImageIO
-
-class PngLoader(path : String) extends StandartFormatImageLoader(path) {
+class PngLoader(path : String) extends IOFormatImageLoader(path) {
 }

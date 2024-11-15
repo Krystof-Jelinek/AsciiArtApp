@@ -10,7 +10,8 @@ class InvertFilter extends  Filter {
       while(x < img.width){
         val pxl : Pixel = img.getVal(x,y).get
         val inversion = 255 - pxl.greyscale
-        // this technically invalids the color but thats not a problem since we dont care about colors
+        // this technically invalids the colors of the picture but thats not a problem since we dont care about colors
+        // the greyscale value will be calculated corectly since the indexes add up to 1
         img.setVal(x,y,Pixel(inversion, inversion, inversion))
         x += 1
       }
