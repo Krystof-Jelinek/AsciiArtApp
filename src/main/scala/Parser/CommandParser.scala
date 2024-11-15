@@ -5,6 +5,7 @@ import Commands.LoaderCommands.{LoadGifImageCommand, LoadJpgImageCommand, LoadPn
 import Commands.SaverCommands.{OutputConsoleCommand, OutputFileCommand}
 import Commands.TransformCommands.{BrightnessFilterCommand, InvertFilterCommand, NonLinearTableCommand, ScaleFilterCommand, SetCustomTableCommand, SetPredefinedTableCommand}
 
+//this class handels with the user input and creates the inner commands that are used to share informations to the handelers
 class CommandParser {
   private var sourceBool : Boolean = false
 
@@ -119,8 +120,4 @@ class CommandParser {
       case _ => throw IllegalArgumentException("Invalid filter or table name")
     }
   }
-
-
-
-
 }

@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage
 import java.io.File
 import javax.imageio.ImageIO
 
+//this class uses standart ImageOI to load images - we support gif, png and jpg formats
 class IOFormatImageLoader(path : String) extends ImageLoaderInterface {
   override def loadImage(): PixelImage = {
 

@@ -7,6 +7,8 @@ import ImageSaver.ImageSaverInterface
 
 import scala.collection.mutable.ArrayBuffer
 
+//before saving any image we need to know where/what image and so on..
+// thats the responsibility of this class
 class ImageSaverHandler {
   private var imgSaver : Option[ImageSaverInterface] = None
 
@@ -14,6 +16,7 @@ class ImageSaverHandler {
     imgSaver = Some(in)
   }
 
+  //we need some informations how to save the image thats why here is savecommand array
   def saveImage(img : AsciiImage, commands: ArrayBuffer[SaveCommand]) : Unit = {
     for(cmd <- commands){
       cmd.applyCommand(this)

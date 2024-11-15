@@ -1,7 +1,5 @@
 package DataModels
 
-import scala.collection.mutable.ArrayBuffer
-
 class AsciiImage(width: Int, height: Int) extends Image[Char](width, height, ' '){
   def getString : String = {
     var res = ""
