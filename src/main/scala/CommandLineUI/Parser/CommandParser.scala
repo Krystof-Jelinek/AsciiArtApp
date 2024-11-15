@@ -2,9 +2,6 @@ package CommandLineUI.Parser
 
 import CommandLineUI.CommandObservers.CommandObserver
 import Commands.{CommandHolder, StringCommandTemplate}
-import Commands.LoaderCommands.{LoadGifImageCommand, LoadJpgImageCommand, LoadPngImageCommand, LoadRandomImageCommand}
-import Commands.SaverCommands.{OutputConsoleCommand, OutputFileCommand}
-import Commands.TransformCommands.{BrightnessFilterCommand, InvertFilterCommand, NonLinearTableCommand, ScaleFilterCommand, SetCustomTableCommand, SetPredefinedTableCommand}
 
 //this class handels with the user input and creates the inner commands that are used to share informations to the handelers
 class CommandParser {
@@ -13,7 +10,6 @@ class CommandParser {
   private var observers = List[CommandObserver]()
 
   def parse(commands: Seq[String]) : CommandHolder = {
-    var sourceFlag = false // reseting this so one parser can parse multiple commands
     observers = observersCreator.createObservers()
     val commandHolder = new CommandHolder()
     var i = 0
