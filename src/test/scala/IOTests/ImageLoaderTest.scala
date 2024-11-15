@@ -10,7 +10,7 @@ import java.io.FileNotFoundException
 
 class ImageLoaderTest extends AnyFunSuite{
 
-  //comapres the loaded picture directly to the file for png and gif since they have the same colors
+  //compares the loaded picture directly to the file for png and gif since they have the same colors
   def validateTestImage(image: PixelImage): Unit = {
     assert(image.width == 3)
     assert(image.height == 3)

@@ -32,16 +32,16 @@ class ImageTest extends AnyFunSuite {
     val redPixel = Pixel(255, 0, 0)
 
     img.setVal(10, 10, redPixel)
-    assert(img.getVal(10, 10) == Some(redPixel))
-    assert(img.getVal(1, 1) == Some(Pixel(0,0,0)))
+    assert(img.getVal(10, 10).contains(redPixel))
+    assert(img.getVal(1, 1).contains(Pixel(0, 0, 0)))
   }
 
   test("PixelImage should return None for out-of-bounds pixel access") {
     val img = new PixelImage(100, 100)
 
-    assert(img.getVal(-1, -1) == None)
-    assert(img.getVal(100, 10) == None)
-    assert(img.getVal(10, 100) == None)
+    assert(img.getVal(-1, -1).isEmpty)
+    assert(img.getVal(100, 10).isEmpty)
+    assert(img.getVal(10, 100).isEmpty)
   }
 
   test("PixelImage should throw an IllegalArgumentException when setting a pixel out of bounds") {
