@@ -3,7 +3,7 @@ package DataModelsTests
 import DataModels.{Pixel, PixelImage}
 import org.scalatest.funsuite.AnyFunSuite
 
-class ImageTest extends AnyFunSuite {
+class PixelImageTest extends AnyFunSuite {
 
   test("Image should initialize with correct dimensions") {
     val img = new PixelImage(100, 100)
@@ -27,7 +27,7 @@ class ImageTest extends AnyFunSuite {
     assert(img5.height == 1080)
   }
 
-  test("PixelImage should set and get a pixel correctly") {
+  test("Image should set and get correctly") {
     val img = new PixelImage(100, 100)
     val redPixel = Pixel(255, 0, 0)
 
@@ -36,7 +36,7 @@ class ImageTest extends AnyFunSuite {
     assert(img.getVal(1, 1).contains(Pixel(0, 0, 0)))
   }
 
-  test("PixelImage should return None for out-of-bounds pixel access") {
+  test("Image should return None for out-of-bounds access") {
     val img = new PixelImage(100, 100)
 
     assert(img.getVal(-1, -1).isEmpty)
@@ -44,7 +44,7 @@ class ImageTest extends AnyFunSuite {
     assert(img.getVal(10, 100).isEmpty)
   }
 
-  test("PixelImage should throw an IllegalArgumentException when setting a pixel out of bounds") {
+  test("Image should throw an IllegalArgumentException when setting out of bounds") {
     val img = new PixelImage(100, 100)
     val redPixel = Pixel(255, 0, 0)
 
@@ -53,7 +53,7 @@ class ImageTest extends AnyFunSuite {
     }
   }
 
-  test("PixelImage should throw an IllegalArgumentException when width or height is out of bounds") {
+  test("Image should throw an IllegalArgumentException when width or height is out of bounds") {
     assertThrows[IllegalArgumentException] {
       val img = new PixelImage(-10, 100)
     }

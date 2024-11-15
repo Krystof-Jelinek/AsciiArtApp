@@ -2,10 +2,12 @@ package IOTests
 
 import Commands.LoaderCommands.{LoadGifImageCommand, LoadJpgImageCommand, LoadPngImageCommand, LoadRandomImageCommand}
 import Commands.SaverCommands.{OutputConsoleCommand, OutputFileCommand}
-import Commands.StringCommandTemplate
+import Commands.{CommandHolder, StringCommandTemplate}
 import Commands.TransformCommands.{BrightnessFilterCommand, InvertFilterCommand, NonLinearTableCommand, ScaleFilterCommand, SetCustomTableCommand, SetPredefinedTableCommand}
 import Parser.CommandParser
 import org.scalatest.funsuite.AnyFunSuite
+
+import java.io.ByteArrayOutputStream
 
 class ParserTest extends AnyFunSuite{
   test("image loading test"){
@@ -40,7 +42,12 @@ class ParserTest extends AnyFunSuite{
 
   test("filter parsing test") {
     val parser = new CommandParser()
-    var res = parser.parse(Seq[String]("--invert", "--scale", "0.25", "--brightness", "20"))
+    val outputStream = new ByteArrayOutputStream()
+
+    var res = CommandHolder()
+    Console.withOut(outputStream) {
+      res = parser.parse(Seq[String]("--invert", "--scale", "0.25", "--brightness", "20"))
+    }
     res.loadCommand match {
       case loadCmd: LoadRandomImageCommand =>
         assert(loadCmd.seed == "")
@@ -82,7 +89,12 @@ class ParserTest extends AnyFunSuite{
 
   test("One Parser parses multiple commands"){
     val parser = new CommandParser()
-    var res = parser.parse(Seq[String]("--output-file", "Path/to/some/file", "--image-random", "--output-console"))
+    val outputStream = new ByteArrayOutputStream()
+
+    var res = CommandHolder()
+    Console.withOut(outputStream) {
+      res = parser.parse(Seq[String]("--output-file", "Path/to/some/file", "--image-random", "--output-console"))
+    }
 
     assert(res.saveCommands.nonEmpty)
     assert(res.transformCommands.isEmpty)
@@ -95,7 +107,11 @@ class ParserTest extends AnyFunSuite{
     }
     assert(res.saveCommands(1).isInstanceOf[OutputConsoleCommand])
 
-    var res2 = parser.parse(Seq[String]("--invert", "--scale", "0.25", "--brightness", "20"))
+    var res2 = CommandHolder()
+    Console.withOut(outputStream) {
+      res2 = parser.parse(Seq[String]("--invert", "--scale", "0.25", "--brightness", "20"))
+    }
+
     res.loadCommand match {
       case loadCmd: LoadRandomImageCommand =>
         assert(loadCmd.seed == "")
