@@ -16,7 +16,7 @@ class ImageLoaderHandler {
 
   //we need to know how/where to load thats why this needs argument
   def loadImage(loadCommand : LoadCommand): PixelImage = {
-
+    
     loadCommand.applyCommand(this)
     if(loader.isDefined){
       return loader.get.loadImage()

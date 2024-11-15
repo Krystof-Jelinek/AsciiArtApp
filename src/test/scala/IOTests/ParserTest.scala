@@ -1,10 +1,10 @@
 package IOTests
 
+import CommandLineUI.Parser.CommandParser
 import Commands.LoaderCommands.{LoadGifImageCommand, LoadJpgImageCommand, LoadPngImageCommand, LoadRandomImageCommand}
 import Commands.SaverCommands.{OutputConsoleCommand, OutputFileCommand}
 import Commands.{CommandHolder, StringCommandTemplate}
 import Commands.TransformCommands.{BrightnessFilterCommand, InvertFilterCommand, NonLinearTableCommand, ScaleFilterCommand, SetCustomTableCommand, SetPredefinedTableCommand}
-import Parser.CommandParser
 import org.scalatest.funsuite.AnyFunSuite
 
 import java.io.ByteArrayOutputStream
@@ -13,7 +13,7 @@ class ParserTest extends AnyFunSuite{
   test("image loading test"){
     val parser = new CommandParser()
     val res = parser.parse(Seq[String]("--image", "Some/Path/somewhere/file.png"))
-    res.loadCommand match {
+    res.loadCommand.get match {
       case loadCmd: LoadPngImageCommand =>
         assert(loadCmd.path == "Some/Path/somewhere/file.png")
       case _ =>
@@ -23,7 +23,7 @@ class ParserTest extends AnyFunSuite{
     assert(res.transformCommands.isEmpty)
 
     val res2 = parser.parse(Seq[String]("--image-random"))
-    res2.loadCommand match {
+    res2.loadCommand.get match {
       case loadCmd: LoadRandomImageCommand =>
       case _ =>
         fail("Expected LoadRandomImageCommand, but got something else")
@@ -46,9 +46,9 @@ class ParserTest extends AnyFunSuite{
 
     var res = CommandHolder()
     Console.withOut(outputStream) {
-      res = parser.parse(Seq[String]("--invert", "--scale", "0.25", "--brightness", "20"))
+      res = parser.parse(Seq[String]("--image-random","--invert", "--scale", "0.25", "--brightness", "20"))
     }
-    res.loadCommand match {
+    res.loadCommand.get match {
       case loadCmd: LoadRandomImageCommand =>
         assert(loadCmd.seed == "")
       case _ =>
@@ -109,10 +109,10 @@ class ParserTest extends AnyFunSuite{
 
     var res2 = CommandHolder()
     Console.withOut(outputStream) {
-      res2 = parser.parse(Seq[String]("--invert", "--scale", "0.25", "--brightness", "20"))
+      res2 = parser.parse(Seq[String]("--image-random","--invert", "--scale", "0.25", "--brightness", "20"))
     }
 
-    res.loadCommand match {
+    res.loadCommand.get match {
       case loadCmd: LoadRandomImageCommand =>
         assert(loadCmd.seed == "")
       case _ =>
@@ -136,7 +136,7 @@ class ParserTest extends AnyFunSuite{
     }
 
     val res3 = parser.parse(Seq[String]("--image", "Some/Path/somewhere/file.png"))
-    res3.loadCommand match {
+    res3.loadCommand.get match {
       case loadCmd: LoadPngImageCommand =>
         assert(loadCmd.path == "Some/Path/somewhere/file.png")
       case _ =>
@@ -146,7 +146,7 @@ class ParserTest extends AnyFunSuite{
     assert(res3.transformCommands.isEmpty)
 
     val res4 = parser.parse(Seq[String]("--image-random"))
-    res4.loadCommand match {
+    res4.loadCommand.get match {
       case loadCmd: LoadRandomImageCommand =>
         assert(loadCmd.seed == "")
       case _ =>
@@ -166,14 +166,21 @@ class ParserTest extends AnyFunSuite{
   test("Invalid --output command"){
     val parser = CommandParser()
     assertThrows[IllegalArgumentException] {
-      parser.parse(Seq[String]("--output-random", "HUHARGUMENT"))
+      parser.parse(Seq[String]("--image-random ", "--output", "HUHARGUMENT"))
+    }
+  }
+
+  test("Missing --image argument") {
+    val parser = CommandParser()
+    assertThrows[IllegalArgumentException] {
+      parser.parse(Seq[String]("--invert"))
     }
   }
 
   test("jpg image loading"){
     val parser = new CommandParser()
     val res = parser.parse(Seq[String]("--image", "Some/Path/somewhere/file.jpg"))
-    res.loadCommand match {
+    res.loadCommand.get match {
       case loadCmd: LoadJpgImageCommand =>
         assert(loadCmd.path == "Some/Path/somewhere/file.jpg")
       case _ =>
@@ -186,7 +193,7 @@ class ParserTest extends AnyFunSuite{
   test("gif image loading") {
     val parser = new CommandParser()
     val res = parser.parse(Seq[String]("--image", "Some/Path/somewhere/file.gif"))
-    res.loadCommand match {
+    res.loadCommand.get match {
       case loadCmd: LoadGifImageCommand =>
         assert(loadCmd.path == "Some/Path/somewhere/file.gif")
       case _ =>
@@ -253,6 +260,27 @@ class ParserTest extends AnyFunSuite{
     val parser = new CommandParser()
     assertThrows[IllegalArgumentException] {
       val res = parser.parse(Seq[String]("--image", "Some/Path/somewhere/file.gif", "--scale", "Mistake"))
+    }
+  }
+
+  test("More --image arguments throws error - gif ") {
+    val parser = new CommandParser()
+    assertThrows[IllegalArgumentException] {
+      val res = parser.parse(Seq[String]("--image-random","--image", "Some/Path/somewhere/file.gif"))
+    }
+  }
+
+  test("More --image arguments throws error - png ") {
+    val parser = new CommandParser()
+    assertThrows[IllegalArgumentException] {
+      val res = parser.parse(Seq[String]("--image-random", "--image", "Some/Path/somewhere/file.png"))
+    }
+  }
+
+  test("More --image arguments throws error - jpg ") {
+    val parser = new CommandParser()
+    assertThrows[IllegalArgumentException] {
+      val res = parser.parse(Seq[String]("--image-random", "--image", "Some/Path/somewhere/file.jpg"))
     }
   }
 

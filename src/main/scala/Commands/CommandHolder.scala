@@ -8,7 +8,7 @@ import scala.collection.mutable.ArrayBuffer
 
 class CommandHolder {
   //seting default value to generate random images if no source is specified
-  var loadCommand: LoadCommand = LoadRandomImageCommand("")
+  var loadCommand: Option[LoadCommand] = None
   var transformCommands: ArrayBuffer[TransformCommand] = ArrayBuffer.empty[TransformCommand]
   var saveCommands: ArrayBuffer[SaveCommand] = ArrayBuffer.empty[SaveCommand]
 }

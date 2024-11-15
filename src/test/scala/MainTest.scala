@@ -21,7 +21,7 @@ class MainTest extends AnyFunSuite {
       controller.run(Seq("--wrong-command","--image", "src/pictures/penguin-smaller.png"))
       val outputContent = outputStream.toString(StandardCharsets.UTF_8.name())
       assert(outputContent == "\n***********************************************************************" +
-        "\nSomething went wrong: \n\nInvalid filter or table name\n\n" +
+        "\nSomething went wrong: \n\nThis command : --wrong-command is not supported\n\n" +
         "***********************************************************************\n\n"
       )
     }
