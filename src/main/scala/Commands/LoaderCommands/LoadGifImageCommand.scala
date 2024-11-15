@@ -1,9 +1,10 @@
 package Commands.LoaderCommands
 
-import ImageLoader.{GifLoader, ImageLoader}
+import Handlers.ImageLoaderHandler
+import ImageLoader.GifLoader
 
 class LoadGifImageCommand(val path: String) extends LoadCommand {
-  override def applyCommand(handeler: ImageLoader): Unit = {
+  override def applyCommand(handeler: ImageLoaderHandler): Unit = {
     validatePathOrThrow(path)
     handeler.setImageLoaderInterface(new GifLoader(path))
   }

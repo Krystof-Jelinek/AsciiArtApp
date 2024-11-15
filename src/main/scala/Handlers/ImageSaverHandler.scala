@@ -1,12 +1,13 @@
-package ImageSaver
+package Handlers
 
 import Commands.SaverCommands.SaveCommand
 import DataModels.AsciiImage
 import ExceptionHandeler.LogicException
+import ImageSaver.ImageSaverInterface
 
 import scala.collection.mutable.ArrayBuffer
 
-class ImageSaver {
+class ImageSaverHandler {
   private var imgSaver : Option[ImageSaverInterface] = None
 
   def setImgSaverInterface(in : ImageSaverInterface): Unit = {

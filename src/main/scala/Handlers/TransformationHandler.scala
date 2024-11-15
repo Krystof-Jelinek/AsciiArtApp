@@ -1,13 +1,13 @@
-package TransformationHandelers
+package Handlers
 
 import Commands.TransformCommands.TransformCommand
 import DataModels.{AsciiImage, PixelImage}
-import TransformationHandelers.Converters.{ConversionTable, ImageConverterInterface, LinearConverter}
-import Filters.Filter
+import ImageTransformation.Converters.{ConversionTable, ImageConverterInterface, LinearConverter}
+import ImageTransformation.Filters.Filter
 
 import scala.collection.mutable.ArrayBuffer
 
-class TransformationHandeler {
+class TransformationHandler {
   var table: ConversionTable = new ConversionTable
   private var imgConverter : ImageConverterInterface = new LinearConverter(table)
   private val filterArray = ArrayBuffer.empty[Filter]

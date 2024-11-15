@@ -1,8 +1,9 @@
 package Commands.TransformCommands
-import TransformationHandelers.TransformationHandeler
+
+import Handlers.TransformationHandler
 
 class SetPredefinedTableCommand(val index : Int) extends TransformCommand {
-  override def applyCommand(handeler: TransformationHandeler): Unit = {
+  override def applyCommand(handeler: TransformationHandler): Unit = {
     handeler.accessTable().setPredifinedTable(index)
   }
 }

@@ -2,17 +2,17 @@ package IOTests
 
 import Commands.SaverCommands.{OutputConsoleCommand, OutputFileCommand, SaveCommand}
 import DataModels.AsciiImage
-import ImageSaver.ImageSaver
+import Handlers.ImageSaverHandler
 import org.scalatest.funsuite.AnyFunSuite
 
 import java.io.ByteArrayOutputStream
 import java.nio.file.{Files, Paths}
 import scala.collection.mutable.ArrayBuffer
 
-class ImageSaverTest extends AnyFunSuite{
+class ImageSaverHandlerTest extends AnyFunSuite{
 
   test("Valid path and command saves image"){
-    val saver = new ImageSaver
+    val saver = new ImageSaverHandler
     val asciiImage = AsciiImage(4,3)
     //Test\nNext\n@@@@\n
     asciiImage.setVal(0,0, 'T')
@@ -52,7 +52,7 @@ class ImageSaverTest extends AnyFunSuite{
   }
 
   test("No command doesnt save file"){
-    val saver = new ImageSaver
+    val saver = new ImageSaverHandler
     val asciiImage = AsciiImage(4,3)
     //Test\nNext\n@@@@\n
     asciiImage.setVal(0,0, 'T')

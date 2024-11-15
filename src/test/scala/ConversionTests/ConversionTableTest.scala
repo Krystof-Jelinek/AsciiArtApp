@@ -1,6 +1,6 @@
 package ConversionTests
 
-import TransformationHandelers.Converters.ConversionTable
+import ImageTransformation.Converters.ConversionTable
 import org.scalatest.funsuite.AnyFunSuite
 
 class ConversionTableTest extends AnyFunSuite{

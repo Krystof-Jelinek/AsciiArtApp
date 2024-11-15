@@ -1,9 +1,10 @@
 package Commands.TransformCommands
-import TransformationHandelers.Filters.ScaleFilter
-import TransformationHandelers.TransformationHandeler
+
+import Handlers.TransformationHandler
+import ImageTransformation.Filters.ScaleFilter
 
 class ScaleFilterCommand(val scale : Float) extends TransformCommand {
-  override def applyCommand(handeler: TransformationHandeler): Unit = {
+  override def applyCommand(handeler: TransformationHandler): Unit = {
     handeler.addFilter(ScaleFilter(scale))
   }
 }

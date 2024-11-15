@@ -1,4 +1,4 @@
-package TransformationHandelers.Converters
+package ImageTransformation.Converters
 
 class NonLinearConverter(conversionTable: ConversionTable) extends TableBasedImageConverter(conversionTable){
 

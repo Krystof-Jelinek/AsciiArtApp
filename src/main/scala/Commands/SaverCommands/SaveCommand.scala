@@ -1,7 +1,7 @@
 package Commands.SaverCommands
 
 import Commands.Command
-import ImageSaver.ImageSaver
+import Handlers.ImageSaverHandler
 
-abstract class SaveCommand extends Command[ImageSaver]{
+abstract class SaveCommand extends Command[ImageSaverHandler]{
 }

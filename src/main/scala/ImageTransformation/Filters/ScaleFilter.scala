@@ -1,4 +1,4 @@
-package TransformationHandelers.Filters
+package ImageTransformation.Filters
 import DataModels.{Image, PixelImage}
 
 class ScaleFilter(val size : Float) extends Filter {

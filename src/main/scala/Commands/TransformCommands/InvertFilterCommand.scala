@@ -1,9 +1,10 @@
 package Commands.TransformCommands
-import TransformationHandelers.Filters.InvertFilter
-import TransformationHandelers.TransformationHandeler
+
+import Handlers.TransformationHandler
+import ImageTransformation.Filters.InvertFilter
 
 class InvertFilterCommand extends TransformCommand {
-  override def applyCommand(handeler: TransformationHandeler): Unit = {
+  override def applyCommand(handeler: TransformationHandler): Unit = {
     handeler.addFilter(new InvertFilter)
   }
 }

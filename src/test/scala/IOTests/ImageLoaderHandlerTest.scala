@@ -2,13 +2,13 @@ package IOTests
 
 import Commands.LoaderCommands.{LoadGifImageCommand, LoadJpgImageCommand, LoadPngImageCommand, LoadRandomImageCommand}
 import DataModels.{Pixel, PixelImage}
-import ImageLoader.ImageLoader
+import Handlers.ImageLoaderHandler
 import Parser.CommandParser
 import org.scalatest.funsuite.AnyFunSuite
 
 import java.io.FileNotFoundException
 
-class ImageLoaderTest extends AnyFunSuite{
+class ImageLoaderHandlerTest extends AnyFunSuite{
 
   //compares the loaded picture directly to the file for png and gif since they have the same colors
   def validateTestImage(image: PixelImage): Unit = {
@@ -26,21 +26,21 @@ class ImageLoaderTest extends AnyFunSuite{
   }
 
   test("Valid path and file format creates image PNG with corectly loaded pixels") {
-    val loader = new ImageLoader
+    val loader = new ImageLoaderHandler
     val command = LoadPngImageCommand("src/test/testPictures/testpicture.png")
     val image = loader.loadImage(command)
     validateTestImage(image)
   }
 
   test("Valid path and file format creates image GIF with corectly loaded pixels") {
-    val loader = new ImageLoader
+    val loader = new ImageLoaderHandler
     val command = LoadPngImageCommand("src/test/testPictures/testpicture.gif")
     val image = loader.loadImage(command)
     validateTestImage(image)
   }
 
   test("Valid path and file format creates image JPG") {
-    val loader = new ImageLoader
+    val loader = new ImageLoaderHandler
     val command = LoadPngImageCommand("src/test/testPictures/testpicture.jpg")
     val image = loader.loadImage(command)
     assert(image.width == 3)
@@ -49,7 +49,7 @@ class ImageLoaderTest extends AnyFunSuite{
   }
 
   test("random image generation generates some picture"){
-    val loader = new ImageLoader
+    val loader = new ImageLoaderHandler
     val command = LoadRandomImageCommand("rngSeed")
     val image = loader.loadImage(command)
     assert(image.width == 228)
@@ -58,7 +58,7 @@ class ImageLoaderTest extends AnyFunSuite{
   }
 
   test("Testing loading of individual pixels of jpg format"){
-    val loader = new ImageLoader
+    val loader = new ImageLoaderHandler
     val command = LoadPngImageCommand("src/test/testPictures/testpicture.jpg")
     val image = loader.loadImage(command)
 
@@ -77,7 +77,7 @@ class ImageLoaderTest extends AnyFunSuite{
   }
 
   test("Unvalid path throws FileNotFoundException for pngCommand"){
-    val loader = new ImageLoader
+    val loader = new ImageLoaderHandler
     val command = LoadPngImageCommand("XXX@@@INVALIDPATHXXX@@@")
     assertThrows[FileNotFoundException] {
       loader.loadImage(command)
@@ -85,7 +85,7 @@ class ImageLoaderTest extends AnyFunSuite{
   }
 
   test("Unvalid path throws FileNotFoundException for jpgCommand") {
-    val loader = new ImageLoader
+    val loader = new ImageLoaderHandler
     val command = LoadJpgImageCommand("XXX@@@INVALIDPATHXXX@@@")
     assertThrows[FileNotFoundException] {
       loader.loadImage(command)
@@ -93,7 +93,7 @@ class ImageLoaderTest extends AnyFunSuite{
   }
 
   test("Unvalid path throws FileNotFoundException for GifCommand") {
-    val loader = new ImageLoader
+    val loader = new ImageLoaderHandler
     val command = LoadGifImageCommand("XXX@@@INVALIDPATHXXX@@@")
     assertThrows[FileNotFoundException] {
       loader.loadImage(command)

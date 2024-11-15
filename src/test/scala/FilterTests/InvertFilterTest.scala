@@ -1,7 +1,7 @@
 package FilterTests
 
 import DataModels.{Pixel, PixelImage}
-import TransformationHandelers.Filters.InvertFilter
+import ImageTransformation.Filters.InvertFilter
 import org.scalatest.funsuite.AnyFunSuite
 
 class InvertFilterTest extends AnyFunSuite{

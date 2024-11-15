@@ -1,8 +1,10 @@
 package Commands.SaverCommands
-import ImageSaver.{FileSaver, ImageSaver}
+
+import Handlers.ImageSaverHandler
+import ImageSaver.FileSaver
 
 class OutputFileCommand(val filepath: String) extends SaveCommand {
-  override def applyCommand(handeler: ImageSaver): Unit = {
+  override def applyCommand(handeler: ImageSaverHandler): Unit = {
     handeler.setImgSaverInterface(new FileSaver(filepath))
   }
 }

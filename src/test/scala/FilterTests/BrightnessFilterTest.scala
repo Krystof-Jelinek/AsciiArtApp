@@ -1,7 +1,7 @@
 package FilterTests
 
 import DataModels.{Pixel, PixelImage}
-import TransformationHandelers.Filters.BrightnessFilter
+import ImageTransformation.Filters.BrightnessFilter
 import org.scalatest.funsuite.AnyFunSuite
 
 class BrightnessFilterTest extends AnyFunSuite{

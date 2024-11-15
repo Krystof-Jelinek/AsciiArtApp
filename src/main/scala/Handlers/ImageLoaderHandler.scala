@@ -1,10 +1,11 @@
-package ImageLoader
+package Handlers
 
 import Commands.LoaderCommands.LoadCommand
 import DataModels.PixelImage
 import ExceptionHandeler.LogicException
+import ImageLoader.ImageLoaderInterface
 
-class ImageLoader {
+class ImageLoaderHandler {
   private var loader : Option[ImageLoaderInterface] = None
 
   def setImageLoaderInterface(in : ImageLoaderInterface): Unit = {

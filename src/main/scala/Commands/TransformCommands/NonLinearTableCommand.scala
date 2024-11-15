@@ -1,9 +1,10 @@
 package Commands.TransformCommands
-import TransformationHandelers.Converters.NonLinearConverter
-import TransformationHandelers.TransformationHandeler
+
+import Handlers.TransformationHandler
+import ImageTransformation.Converters.NonLinearConverter
 
 class NonLinearTableCommand extends TransformCommand {
-  override def applyCommand(handeler: TransformationHandeler): Unit = {
+  override def applyCommand(handeler: TransformationHandler): Unit = {
     handeler.setImageConverterInterface(new NonLinearConverter(handeler.accessTable()))      
   }
 }

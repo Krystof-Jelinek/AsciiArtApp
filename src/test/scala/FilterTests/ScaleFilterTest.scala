@@ -1,7 +1,7 @@
 package FilterTests
 
 import DataModels.{Pixel, PixelImage}
-import TransformationHandelers.Filters.ScaleFilter
+import ImageTransformation.Filters.ScaleFilter
 import org.scalatest.funsuite.AnyFunSuite
 
 class ScaleFilterTest extends AnyFunSuite{

@@ -1,4 +1,4 @@
-package TransformationHandelers.Filters
+package ImageTransformation.Filters
 import DataModels.{Image, Pixel, PixelImage}
 
 class BrightnessFilter(val intensity : Int) extends Filter {

@@ -1,9 +1,7 @@
 import DataModels.AsciiImage
 import ExceptionHandeler.{ExceptionHandeler, StdOutExceptionHandeler}
-import ImageLoader.ImageLoader
-import ImageSaver.ImageSaver
+import Handlers.{ImageLoaderHandler, ImageSaverHandler, TransformationHandler}
 import Parser.CommandParser
-import TransformationHandelers.TransformationHandeler
 
 class AppController {
   def run(args: Seq[String]): Unit = {
@@ -11,13 +9,13 @@ class AppController {
       val parser = new CommandParser
       val cmdHolder = parser.parse(args)
 
-      val imageLoader = new ImageLoader()
+      val imageLoader = new ImageLoaderHandler()
       val image = imageLoader.loadImage(cmdHolder.loadCommand)
 
-      val transformationHandeler = new TransformationHandeler
+      val transformationHandeler = new TransformationHandler
       val asciiImage: AsciiImage = transformationHandeler.execute(image, cmdHolder.transformCommands)
 
-      val imageSaver = new ImageSaver()
+      val imageSaver = new ImageSaverHandler()
       imageSaver.saveImage(asciiImage, cmdHolder.saveCommands)
     }
     catch {

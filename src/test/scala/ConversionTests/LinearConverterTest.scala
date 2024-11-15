@@ -1,7 +1,7 @@
 package ConversionTests
 
 import DataModels.{Pixel, PixelImage}
-import TransformationHandelers.Converters.{ConversionTable, LinearConverter}
+import ImageTransformation.Converters.{ConversionTable, LinearConverter}
 import org.scalatest.funsuite.AnyFunSuite
 
 class LinearConverterTest extends AnyFunSuite{

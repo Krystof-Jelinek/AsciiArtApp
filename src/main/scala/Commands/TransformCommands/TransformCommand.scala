@@ -1,7 +1,7 @@
 package Commands.TransformCommands
 
 import Commands.Command
-import TransformationHandelers.TransformationHandeler
+import Handlers.TransformationHandler
 
-abstract class TransformCommand extends Command[TransformationHandeler]{
+abstract class TransformCommand extends Command[TransformationHandler]{
 }

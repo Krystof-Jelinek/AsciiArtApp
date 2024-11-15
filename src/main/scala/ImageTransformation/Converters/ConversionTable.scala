@@ -1,4 +1,4 @@
-package TransformationHandelers.Converters
+package ImageTransformation.Converters
 
 import scala.collection.mutable.ArrayBuffer
 import scala.io.Source
