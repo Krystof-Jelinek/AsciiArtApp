@@ -3,7 +3,7 @@ package IOTests
 import CommandLineUI.Parser.CommandParser
 import Commands.LoaderCommands.{LoadGifImageCommand, LoadJpgImageCommand, LoadPngImageCommand, LoadRandomImageCommand}
 import Commands.SaverCommands.{OutputConsoleCommand, OutputFileCommand}
-import Commands.{CommandHolder, StringCommandTemplate}
+import Commands.CommandHolder
 import Commands.TransformCommands.{BrightnessFilterCommand, InvertFilterCommand, NonLinearTableCommand, ScaleFilterCommand, SetCustomTableCommand, SetPredefinedTableCommand}
 import org.scalatest.funsuite.AnyFunSuite
 
