@@ -5,6 +5,8 @@ import CommandLineUI.CommandObservers.LoadCommandObservers.{LoadGifCommandObserv
 import CommandLineUI.CommandObservers.SaveCommandObservers.{OutputConsoleCommandObserver, OutputFileCommandObserver}
 import CommandLineUI.CommandObservers.TransformCommandObservers.{BrightnessCommandObserver, InvertCommandObserver, NonLinearTableCommandObserver, ScaleCommandObserver, SetCustomTableCommandObserver, SetPredefinedTableCommandObserver}
 
+//this class only resposibility is to set all the observer/commands that we wanna use
+//it has its own class since if we wanna add another command we only need to make the command & his observer and than only add the observer here
 class ObserversCreator {
   def createObservers(): List[CommandObserver] = {
     List[CommandObserver](

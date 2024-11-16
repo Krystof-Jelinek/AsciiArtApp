@@ -5,7 +5,7 @@ import DataModels.{AsciiImage, PixelImage}
 abstract class TableBasedImageConverter(val conversionTable: ConversionTable) extends ImageConverterInterface {
 
   def convert(img: PixelImage): AsciiImage = {
-    var res = new AsciiImage(img.width, img.height)
+    val res = new AsciiImage(img.width, img.height)
     var x = 0
     var y = 0
 

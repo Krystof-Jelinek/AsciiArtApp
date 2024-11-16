@@ -1,5 +1,5 @@
 package ImageTransformation.Filters
-import DataModels.{Image, Pixel, PixelImage}
+import DataModels.{Pixel, PixelImage}
 
 class BrightnessFilter(val intensity : Int) extends Filter {
   override def applyFilter(img: PixelImage): Unit = {

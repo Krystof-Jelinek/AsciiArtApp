@@ -1,5 +1,5 @@
 package ImageTransformation.Filters
-import DataModels.{Image, PixelImage}
+import DataModels.PixelImage
 
 class ScaleFilter(val size : Float) extends Filter {
   override def applyFilter(img: PixelImage): Unit = {
