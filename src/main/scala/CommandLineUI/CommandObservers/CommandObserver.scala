@@ -1,6 +1,7 @@
 package CommandLineUI.CommandObservers
 
-import Commands.{CommandHolder, StringCommandTemplate}
+import CommandLineUI.StringCommandTemplate
+import Commands.CommandHolder
 
 trait CommandObserver {
   def observe(cmdTemplate: StringCommandTemplate, commandHolder: CommandHolder) : Boolean

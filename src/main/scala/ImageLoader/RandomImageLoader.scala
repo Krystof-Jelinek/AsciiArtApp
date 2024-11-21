@@ -4,7 +4,7 @@ import DataModels.{Pixel, PixelImage}
 import scala.util.Random
 
 class RandomImageLoader(seed : String) extends ImageLoaderInterface {
-  private var random = new Random()
+  protected var random = new Random()
   if(seed != ""){
     random = new Random(seed.hashCode.toLong)
   }

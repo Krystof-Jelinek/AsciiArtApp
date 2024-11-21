@@ -1,7 +1,8 @@
 package CommandLineUI.Parser
 
 import CommandLineUI.CommandObservers.CommandObserver
-import Commands.{CommandHolder, StringCommandTemplate}
+import CommandLineUI.StringCommandTemplate
+import Commands.CommandHolder
 
 //this class handels with the user input and creates the inner commands that are used to share informations to the handelers
 class CommandParser {

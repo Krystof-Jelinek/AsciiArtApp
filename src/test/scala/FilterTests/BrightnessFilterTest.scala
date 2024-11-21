@@ -10,7 +10,10 @@ class BrightnessFilterTest extends AnyFunSuite{
     var img = new PixelImage(1, 1)
     img.setVal(0, 0, Pixel(10, 10, 10))
 
+    val a = img.getVal(0,0).get.greyscale
+
     filter.applyFilter(img)
+    val b = img.getVal(0,0).get.greyscale
 
     //because it works with floats
     assert(img.getVal(0, 0).get == Pixel(19, 19, 19))

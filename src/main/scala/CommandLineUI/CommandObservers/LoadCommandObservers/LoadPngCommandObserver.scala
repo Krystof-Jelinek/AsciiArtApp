@@ -1,8 +1,9 @@
 package CommandLineUI.CommandObservers.LoadCommandObservers
 
 import CommandLineUI.CommandObservers.CommandObserver
+import CommandLineUI.StringCommandTemplate
 import Commands.LoaderCommands.LoadPngImageCommand
-import Commands.{CommandHolder, StringCommandTemplate}
+import Commands.CommandHolder
 
 class LoadPngCommandObserver extends CommandObserver{
   override def observe(cmdTemplate: StringCommandTemplate, commandHolder: CommandHolder) : Boolean = {

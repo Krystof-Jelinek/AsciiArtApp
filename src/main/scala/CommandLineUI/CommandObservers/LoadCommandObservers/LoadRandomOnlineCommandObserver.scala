@@ -2,16 +2,16 @@ package CommandLineUI.CommandObservers.LoadCommandObservers
 
 import CommandLineUI.CommandObservers.CommandObserver
 import CommandLineUI.StringCommandTemplate
-import Commands.LoaderCommands.LoadJpgImageCommand
 import Commands.CommandHolder
+import Commands.LoaderCommands.LoadRandomOnlineImageCommand
 
-class LoadJpgCommandObserver extends CommandObserver{
+class LoadRandomOnlineCommandObserver extends CommandObserver{
   override def observe(cmdTemplate: StringCommandTemplate, commandHolder: CommandHolder): Boolean = {
-    if ((cmdTemplate.name == "--image") && (cmdTemplate.value.endsWith(".jpg"))) {
+    if (cmdTemplate.name == "--image-random-online") {
       if (commandHolder.loadCommand.isDefined) {
         throw IllegalArgumentException("Only one --image argument can be specified")
       }
-      commandHolder.loadCommand = Some(new LoadJpgImageCommand(cmdTemplate.value))
+      commandHolder.loadCommand = Some(new LoadRandomOnlineImageCommand(cmdTemplate.value))
       return true
     }
     return false

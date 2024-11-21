@@ -1,8 +1,9 @@
 package CommandLineUI.CommandObservers.TransformCommandObservers
 
 import CommandLineUI.CommandObservers.CommandObserver
+import CommandLineUI.StringCommandTemplate
 import Commands.TransformCommands.InvertFilterCommand
-import Commands.{CommandHolder, StringCommandTemplate}
+import Commands.CommandHolder
 
 class InvertCommandObserver extends CommandObserver {
   override def observe(cmdTemplate: StringCommandTemplate, commandHolder: CommandHolder) : Boolean = {

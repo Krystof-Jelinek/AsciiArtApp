@@ -1,8 +1,9 @@
 package CommandLineUI.CommandObservers.SaveCommandObservers
 
 import CommandLineUI.CommandObservers.CommandObserver
+import CommandLineUI.StringCommandTemplate
 import Commands.SaverCommands.OutputConsoleCommand
-import Commands.{CommandHolder, StringCommandTemplate}
+import Commands.CommandHolder
 
 class OutputConsoleCommandObserver extends CommandObserver{
   override def observe(cmdTemplate: StringCommandTemplate, commandHolder: CommandHolder) : Boolean = {
