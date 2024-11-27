@@ -7,7 +7,7 @@ import java.net.URI
 
 
 //This class was added later and only for fun and check if the design is really easily expandable which it seems it is
-//this class has no UNIT tests since i dont want it to be part of (pretty please) evaluation the RandomImageLoader is the class that should be considered for evaluation as a random generator
+//this class has no UNIT tests since i dont want it to be (pretty please) part of evaluation the RandomImageLoader is the class that should be considered for evaluation as a random generator
 class RandomOnlineImageLoader(seed : String) extends RandomImageLoader(seed) {
   override def loadImage(): PixelImage = {
     val width = random.nextInt(500) + 1

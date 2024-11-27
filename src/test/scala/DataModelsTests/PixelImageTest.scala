@@ -71,7 +71,7 @@ class PixelImageTest extends AnyFunSuite {
     }
   }
 
-  test("Resize test same size"){
+  test("Resize test same size") {
     val img = new PixelImage(5, 5)
     img.resize(5, 5)
     assert(img.width == 5)
@@ -85,46 +85,46 @@ class PixelImageTest extends AnyFunSuite {
     }
   }
 
-  test("Resize test shrinking"){
-    val img = new PixelImage(10,10)
-    img.resize(5,5)
+  test("Resize test shrinking") {
+    val img = new PixelImage(10, 10)
+    img.resize(5, 5)
     assert(img.width == 5)
     assert(img.height == 5)
-    assert(img.getVal(4,4).get == Pixel(0,0,0))
-    assertThrows[IndexOutOfBoundsException]{
+    assert(img.getVal(4, 4).get == Pixel(0, 0, 0))
+    assertThrows[IndexOutOfBoundsException] {
       img.testInternalSize(4, 5)
     }
     assertThrows[IndexOutOfBoundsException] {
       img.testInternalSize(5, 0)
     }
 
-    img.resize(3,3)
+    img.resize(3, 3)
     assert(img.width == 3)
     assert(img.height == 3)
     assert(img.getVal(2, 2).get == Pixel(0, 0, 0))
     assert(img.getVal(0, 0).get == Pixel(0, 0, 0))
     assertThrows[IndexOutOfBoundsException] {
-      img.testInternalSize(2,3)
+      img.testInternalSize(2, 3)
     }
     assertThrows[IndexOutOfBoundsException] {
-      img.testInternalSize(3,0)
+      img.testInternalSize(3, 0)
     }
 
   }
 
-  test("Resize test enlarging"){
+  test("Resize test enlarging") {
     val img = new PixelImage(1, 1)
-    img.setVal(0,0,Pixel(100,100,100))
+    img.setVal(0, 0, Pixel(100, 100, 100))
     img.resize(3, 3)
     assert(img.width == 3)
     assert(img.height == 3)
     assert(img.getVal(2, 2).get == Pixel(0, 0, 0))
     assert(img.getVal(0, 0).get == Pixel(100, 100, 100))
     assertThrows[IndexOutOfBoundsException] {
-      img.testInternalSize(2,3)
+      img.testInternalSize(2, 3)
     }
     assertThrows[IndexOutOfBoundsException] {
-      img.testInternalSize(3,0)
+      img.testInternalSize(3, 0)
     }
 
     img.resize(5, 5)
@@ -134,26 +134,31 @@ class PixelImageTest extends AnyFunSuite {
     assert(img.getVal(4, 3).get == Pixel(0, 0, 0))
     assert(img.getVal(0, 0).get == Pixel(100, 100, 100))
     assertThrows[IndexOutOfBoundsException] {
-      img.testInternalSize(4,5)
+      img.testInternalSize(4, 5)
     }
     assertThrows[IndexOutOfBoundsException] {
       img.testInternalSize(5, 0)
     }
   }
 
-  test("Cant resize to bigger then max size or negative size"){
-    assertThrows[IllegalArgumentException] {
-      val img = new PixelImage(100, 100)
-      img.resize(0,50)
-    }
-    assertThrows[IllegalArgumentException] {
-      val img = new PixelImage(100, 100)
-      img.resize(50, -20)
-    }
-
+  test("Cant resize to bigger then max size or negative size") {
     assertThrows[IllegalArgumentException] {
       val img = new PixelImage(100, 100)
       img.resize(4000, 15)
+    }
+  }
+
+  test("Cant resize to 0 size") {
+    assertThrows[IllegalArgumentException] {
+      val img = new PixelImage(100, 100)
+      img.resize(0, 50)
+    }
+  }
+
+  test("Cant resize to negative size") {
+    assertThrows[IllegalArgumentException] {
+      val img = new PixelImage(100, 100)
+      img.resize(50, -20)
     }
   }
 

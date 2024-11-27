@@ -52,4 +52,18 @@ class LinearConverterTest extends AnyFunSuite{
     assert(res.getString == "00\n00\n")
 
   }
+
+  test("edge values for linear conversion"){
+    val image = new PixelImage(2, 1)
+    val table = new ConversionTable
+
+    table.setTable("AB")
+    image.setVal(0, 0, Pixel(129, 129, 129))
+    image.setVal(1, 0, Pixel(128, 128, 128))
+
+    val converter = new LinearConverter(table)
+    val res = converter.convert(image)
+
+    assert(res.getString == "BA\n")
+  }
 }
