@@ -1,6 +1,6 @@
 # ASCII Art Generator
 
-🎨 **Transform images into ASCII art** with ease! This Scala-based application allows you to load images, apply filters, and convert them into ASCII art. Whether you want to print the result to the console or save it to a file, this tool has you covered.
+🎨 **Transform images into ASCII art**! This Scala-based application allows you to load images, apply filters, and convert them into ASCII art. Whether you want to print the result to the console or save it to a file, this tool has you covered.
 
 ---
 
@@ -15,6 +15,10 @@
 - **Output Options**: Save the ASCII art to a file, print it to the console, or do both.
 
 ---
+
+## Requirements
+
+This project uses [sbt](https://www.scala-sbt.org/) and is built with [Scala 3](https://dotty.epfl.ch/).
 
 ## 🛠️ Arguments
 
