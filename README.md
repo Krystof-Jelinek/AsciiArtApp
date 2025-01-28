@@ -1,13 +1,47 @@
-# ASCII Art
+# ASCII Art Generator
 
-[![pipeline status](https://gitlab.fit.cvut.cz/BI-OOP/B241/asciiart/badges/master/pipeline.svg)](https://gitlab.fit.cvut.cz/BI-OOP/B241/asciiart)
+🎨 **Transform images into ASCII art** with ease! This Scala-based application allows you to load images, apply filters, and convert them into ASCII art. Whether you want to print the result to the console or save it to a file, this tool has you covered.
 
-The idea of this project is to load images, translate them into ASCII ART images, optionally apply filters, and save them. (https://courses.fit.cvut.cz/BI-OOP/projects/ASCII-art.html)
+---
 
-## How to do it
+## 🚀 Features
 
-1. **Make your repository private**
-2. **Read [the instructions](https://courses.fit.cvut.cz/BI-OOP/projects/ASCII-art.html)**
-3. Play [lofi hip hop radio](https://www.youtube.com/watch?v=jfKfPfyJRdk)
-4. [???](https://www.youtube.com/watch?v=ZXsQAXx_ao0)
-5. Profit
+- **Image Input**: Load images from your local system or fetch random images from an online API.
+- **Filters**:
+  - **Scale**: Resize images by factors of 0.25, 1, or 4.
+  - **Invert**: Invert the greyscale values of the image.
+  - **Brightness**: Adjust the brightness of the image.
+- **ASCII Tables**: Use predefined character sets or define your own custom table.
+- **Output Options**: Save the ASCII art to a file, print it to the console, or do both.
+
+---
+
+## 🛠️ Arguments
+
+| Argument                  | Description                                                                     |
+|---------------------------|---------------------------------------------------------------------------------|
+| **`--image "path"`**      | Load an image from the specified local path (e.g., `../images/test.jpg`).       |
+| **`--image-random [seed]`** | Fetch a random image from an online API (optional seed for reproducibility).   |
+| **`--scale <factor>`**    | Scale the image by the specified factor (`0.25`, `1`, `4`).                    |
+| **`--invert`**            | Invert the greyscale values of the image.                                       |
+| **`--brightness <value>`**| Adjust the brightness of the image (e.g., `+10`, `-5`).                        |
+| **`--table <1-4>`**       | Use a predefined ASCII table (`1-4`).                                           |
+| **`--custom-table "..."`**| Define a custom ASCII character set (e.g., `.:-=+*#%@`).                       |
+| **`--output-file "path"`**| Save the ASCII art to the specified file (e.g., `../output/result.txt`).        |
+| **`--output-console`**    | Print the ASCII art to the console.                                             |
+
+---
+
+## 🖼️ Examples
+
+1. **Basic Conversion**:
+   ```bash
+   sbt "run --image ../images/example.jpg --output-console"
+
+2. **Save to file**:
+   ```bash
+   sbt "run --image "test-image.jpg" --output-file "../outputs/output.txt""
+
+3. **Apply multiple transformations and save to a file and console**: 
+    ```bash
+    sbt "run --image "test-image.jpg" --rotate +90 --invert --output-file "../outputs/output.txt" --output-console --table "ABCD""
